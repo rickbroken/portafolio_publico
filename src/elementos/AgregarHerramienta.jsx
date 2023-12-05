@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { agregarHerramienta } from '../funciones/agregarHerramienta';
 
-const AgregarHerramienta = ({setAgregandoHerramienta, herramientas, setHerramientas}) => {
+const AgregarHerramienta = ({setAgregandoHerramienta, herramientas, setHerramientas, setCambio}) => {
   const [nombre, setNombre] = useState('');
   const [icono, setIcono] = useState('');
 
@@ -28,6 +28,7 @@ const AgregarHerramienta = ({setAgregandoHerramienta, herramientas, setHerramien
         className='bg-slate-800 py-1 px-6 rounded-md hover:bg-slate-900 mt-2'
         onClick={()=>{
           setAgregandoHerramienta(false)
+          setCambio(true)
           agregarHerramienta(nombre,icono,herramientas,setHerramientas)
         }}
       >

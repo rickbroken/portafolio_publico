@@ -16,6 +16,10 @@ const SobreMi = () => {
   const [agregandoHerramienta, setAgregandoHerramienta] = useState(false);
   const [agregandoFrontend, setAgregandoFrontend] = useState(false);
   const [agregandoBackend, setAgregandoBackend] = useState(false);
+
+  const [cambioHerramientas, setCambioHerramientas] = useState(false);
+  const [cambioFrontend, setCambioFrontend] = useState(false);
+  const [cambioBackend, setCambioBackend] = useState(false);
   const {usuario} = useAuth();
 
   useEffect(() => {
@@ -24,6 +28,7 @@ const SobreMi = () => {
     });
     AOS.refresh();
   }, []);
+
 
   const [nombres, setNombres] = useState();
   const [correo, setCorreo] = useState();
@@ -52,7 +57,6 @@ const SobreMi = () => {
       id: uuidv4()
     }
   ]);
-
   const [frondtend, setFrondtend] = useState([
     {
       habilidad: "React JS",
@@ -95,7 +99,6 @@ const SobreMi = () => {
       id: uuidv4()
     }
   ]);
-
   const [backend, setBackend] = useState([
     {
       habilidad: "PHP",
@@ -128,8 +131,6 @@ const SobreMi = () => {
       id: uuidv4()
     }
   ]);
-
-console.log(frondtend);
 
   return ( 
   	<>
@@ -169,6 +170,7 @@ console.log(frondtend);
                 id={dato.id}
                 setHabilidad={setFrondtend}
                 habilidad={frondtend}
+                setCambio={setCambioFrontend}
               />
             ))}
             {agregandoFrontend &&
@@ -176,6 +178,7 @@ console.log(frondtend);
                 frontend={frondtend}
                 setFrontend={setFrondtend}
                 setAgregandoFrontend={setAgregandoFrontend}
+                setCambio={setCambioFrontend}
               />
             }
             {usuario !== null && !agregandoFrontend &&
@@ -185,6 +188,15 @@ console.log(frondtend);
               >
                 <Icon icon="carbon:add-alt" color="white" width="25" />
                 <p className='mx-2'>Agregar</p>
+              </div>
+            }
+            {usuario !== null && cambioFrontend &&
+              <div 
+                className='flex justify-center bg-green-400 rounded-md my-2 py-1 cursor-pointer hover:bg-slate-600'
+                onClick={()=>alert('Habilidades guardadas')}
+              >
+                <Icon icon="fluent:save-16-regular" color="#277043" width="25" />
+                <p className='mx-2 text-[#1e723e] font-[700]'>Guardar</p>
               </div>
             }
           </div>
@@ -200,6 +212,7 @@ console.log(frondtend);
                 id={dato.id}
                 setHabilidad={setHerramientas}
                 habilidad={herramientas}
+                setCambio={setCambioHerramientas}
               />
             ))}
             {agregandoHerramienta &&
@@ -207,6 +220,7 @@ console.log(frondtend);
                 herramientas={herramientas}
                 setHerramientas={setHerramientas}
                 setAgregandoHerramienta={setAgregandoHerramienta}
+                setCambio={setCambioHerramientas}
               />
             }
             {usuario !== null && !agregandoHerramienta &&
@@ -216,6 +230,15 @@ console.log(frondtend);
               >
                 <Icon icon="carbon:add-alt" color="white" width="25" />
                 <p className='mx-2'>Agregar</p>
+              </div>
+            }
+            {usuario !== null && cambioHerramientas &&
+              <div 
+                className='flex justify-center bg-green-400 rounded-md my-2 py-1 cursor-pointer hover:bg-slate-600'
+                onClick={()=>alert('Habilidades guardadas')}
+              >
+                <Icon icon="fluent:save-16-regular" color="#277043" width="25" />
+                <p className='mx-2 text-[#1e723e] font-[700]'>Guardar</p>
               </div>
             }
           </div>
@@ -231,6 +254,7 @@ console.log(frondtend);
                 id={dato.id}
                 habilidad={backend}
                 setHabilidad={setBackend}
+                setCambio={setCambioBackend}
               />
             ))}
             {agregandoBackend &&
@@ -238,6 +262,7 @@ console.log(frondtend);
                 backend={backend}
                 setBackend={setBackend}
                 setAgregandoBackend={setAgregandoBackend}
+                setCambio={setCambioBackend}
               />
             }
             {usuario !== null && !agregandoBackend &&
@@ -247,6 +272,15 @@ console.log(frondtend);
               >
                 <Icon icon="carbon:add-alt" color="white" width="25" />
                 <p className='mx-2'>Agregar</p>
+              </div>
+            }
+            {usuario !== null && cambioBackend &&
+              <div 
+                className='flex justify-center bg-green-400 rounded-md my-2 py-1 cursor-pointer hover:bg-slate-600'
+                onClick={()=>alert('Habilidades guardadas')}
+              >
+                <Icon icon="fluent:save-16-regular" color="#277043" width="25" />
+                <p className='mx-2 text-[#1e723e] font-[700]'>Guardar</p>
               </div>
             }
           </div>

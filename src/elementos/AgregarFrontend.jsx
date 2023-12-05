@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { agregarFrontend } from '../funciones/agregarFrontend';
 
-const AgregarFrontend = ({setAgregandoFrontend, frontend, setFrontend}) => {
+const AgregarFrontend = ({setAgregandoFrontend, frontend, setFrontend, setCambio}) => {
   const [nombre, setNombre] = useState('');
   const [icono, setIcono] = useState('');
 
@@ -28,6 +28,7 @@ const AgregarFrontend = ({setAgregandoFrontend, frontend, setFrontend}) => {
         className='bg-slate-800 py-1 px-6 rounded-md hover:bg-slate-900 mt-2'
         onClick={()=>{
           setAgregandoFrontend(false)
+          setCambio(true)
           agregarFrontend(nombre,icono,frontend,setFrontend)
         }}
       >

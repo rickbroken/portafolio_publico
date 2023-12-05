@@ -3,7 +3,7 @@ import React from 'react';
 import { eliminarHabilidad } from '../funciones/eliminarHabilidad';
 import { useAuth } from '../contextos/useAuth';
 
-const ContenedorHabilidades = ({text, icon, id, habilidad, setHabilidad}) => {
+const ContenedorHabilidades = ({text, icon, id, habilidad, setHabilidad, setCambio}) => {
   const {usuario} = useAuth();
 
   return (
@@ -18,7 +18,10 @@ const ContenedorHabilidades = ({text, icon, id, habilidad, setHabilidad}) => {
           icon="carbon:close-outline" 
           color="" 
           width="25"
-          onClick={()=>{eliminarHabilidad(id,habilidad,setHabilidad)}}
+          onClick={()=>{
+            setCambio(true)
+            eliminarHabilidad(id,habilidad,setHabilidad)
+          }}
         />
       }
     </div>

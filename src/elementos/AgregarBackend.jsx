@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { agregarBackend } from '../funciones/agregarBackend';
 
-const AgregarBackend = ({setAgregandoBackend, backend, setBackend}) => {
+const AgregarBackend = ({setAgregandoBackend, backend, setBackend, setCambio}) => {
   const [nombre, setNombre] = useState('');
   const [icono, setIcono] = useState('');
 
@@ -28,6 +28,7 @@ const AgregarBackend = ({setAgregandoBackend, backend, setBackend}) => {
         className='bg-slate-800 py-1 px-6 rounded-md hover:bg-slate-900 mt-2'
         onClick={()=>{
           setAgregandoBackend(false)
+          setCambio(true)
           agregarBackend(nombre,icono,backend,setBackend)
         }}
       >
