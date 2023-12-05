@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-size: 16px;
+  font-family: 'Lexend';
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #0a3951;
+}
+
+p a {
+  color: #14a6e0;
+}
+
+/*------APLICAMOS ESTILOS A LA BAARA DE SCROLL DE TEXAREA DE NUEVA PUBLICACION-----*/
+.cont-nueva-publicacion textarea{
+  resize: none;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+*::-webkit-scrollbar-track{
+  background-color: #3e3f44;
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #646464;
+  border-radius: 5px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #505050;
+}
