@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { agregarBackend } from '../funciones/agregarBackend';
+import { agregarHerramienta } from '../../funciones/agregarHerramienta';
 
-const AgregarBackend = ({setAgregandoBackend, backend, setBackend, setCambio}) => {
+const AgregarHerramienta = ({setAgregandoHerramienta, herramientas, setHerramientas, setCambio}) => {
   const [nombre, setNombre] = useState('');
   const [icono, setIcono] = useState('');
 
@@ -27,9 +27,9 @@ const AgregarBackend = ({setAgregandoBackend, backend, setBackend, setCambio}) =
         type="submit"
         className='bg-slate-800 py-1 px-6 rounded-md hover:bg-slate-900 mt-2'
         onClick={()=>{
-          setAgregandoBackend(false)
+          setAgregandoHerramienta(false)
           setCambio(true)
-          agregarBackend(nombre,icono,backend,setBackend)
+          agregarHerramienta(nombre,icono,herramientas,setHerramientas)
         }}
       >
           Agregar
@@ -38,4 +38,4 @@ const AgregarBackend = ({setAgregandoBackend, backend, setBackend, setCambio}) =
   );
 }
  
-export default AgregarBackend;
+export default AgregarHerramienta;

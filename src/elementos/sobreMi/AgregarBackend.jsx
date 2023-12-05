@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { agregarFrontend } from '../funciones/agregarFrontend';
+import { agregarBackend } from '../../funciones/agregarBackend';
 
-const AgregarFrontend = ({setAgregandoFrontend, frontend, setFrontend, setCambio}) => {
+const AgregarBackend = ({setAgregandoBackend, backend, setBackend, setCambio}) => {
   const [nombre, setNombre] = useState('');
   const [icono, setIcono] = useState('');
 
@@ -27,9 +27,9 @@ const AgregarFrontend = ({setAgregandoFrontend, frontend, setFrontend, setCambio
         type="submit"
         className='bg-slate-800 py-1 px-6 rounded-md hover:bg-slate-900 mt-2'
         onClick={()=>{
-          setAgregandoFrontend(false)
+          setAgregandoBackend(false)
           setCambio(true)
-          agregarFrontend(nombre,icono,frontend,setFrontend)
+          agregarBackend(nombre,icono,backend,setBackend)
         }}
       >
           Agregar
@@ -38,4 +38,4 @@ const AgregarFrontend = ({setAgregandoFrontend, frontend, setFrontend, setCambio
   );
 }
  
-export default AgregarFrontend;
+export default AgregarBackend;

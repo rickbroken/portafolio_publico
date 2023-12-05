@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { agregarHerramienta } from '../funciones/agregarHerramienta';
+import { agregarFrontend } from '../../funciones/agregarFrontend';
 
-const AgregarHerramienta = ({setAgregandoHerramienta, herramientas, setHerramientas, setCambio}) => {
+const AgregarFrontend = ({setAgregandoFrontend, frontend, setFrontend, setCambio}) => {
   const [nombre, setNombre] = useState('');
   const [icono, setIcono] = useState('');
 
@@ -27,9 +27,9 @@ const AgregarHerramienta = ({setAgregandoHerramienta, herramientas, setHerramien
         type="submit"
         className='bg-slate-800 py-1 px-6 rounded-md hover:bg-slate-900 mt-2'
         onClick={()=>{
-          setAgregandoHerramienta(false)
+          setAgregandoFrontend(false)
           setCambio(true)
-          agregarHerramienta(nombre,icono,herramientas,setHerramientas)
+          agregarFrontend(nombre,icono,frontend,setFrontend)
         }}
       >
           Agregar
@@ -38,4 +38,4 @@ const AgregarHerramienta = ({setAgregandoHerramienta, herramientas, setHerramien
   );
 }
  
-export default AgregarHerramienta;
+export default AgregarFrontend;

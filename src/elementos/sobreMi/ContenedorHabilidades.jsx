@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import React from 'react';
-import { eliminarHabilidad } from '../funciones/eliminarHabilidad';
-import { useAuth } from '../contextos/useAuth';
+import { eliminarHabilidad } from '../../funciones/eliminarHabilidad';
+import { useAuth } from '../../contextos/useAuth';
 
 const ContenedorHabilidades = ({text, icon, id, habilidad, setHabilidad, setCambio}) => {
   const {usuario} = useAuth();
