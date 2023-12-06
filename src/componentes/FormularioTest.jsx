@@ -4,8 +4,9 @@ import { Helmet } from 'react-helmet';
 import { Icon } from '@iconify/react';
 
 
-const FormularioTest = () => {
-  const [status, setStatus] = useState('');
+const ValidacionFormulario = () => {
+  const [status, setStatus] = useState(false);
+  const [reloadCaptcha, setReloadCatpcha] = useState(true);
 
   const [nombres, setNombres] = useState('');
   const [email, setEmail] = useState('');
@@ -13,7 +14,6 @@ const FormularioTest = () => {
   const [message, setMessage] = useState(''); 
 
   const handleSubmit = async (event) => {
-    console.log(event.target);
     event.preventDefault();
     const formData = new FormData(event.target);
 
@@ -25,28 +25,36 @@ const FormularioTest = () => {
           'Accept': 'application/json'
         }
       });
-
-      console.log(response);
-  
+      
       if (response.ok) {
-        setStatus('Thanks for your submission!');
         event.target.reset();
+        setNombres('');
+        setEmail('');
+        setPhone('');
+        setMessage('');
+        setReloadCatpcha(false);
+        console.log('llegue hasta aqui');
+        setStatus(response.status);
       } else {
         const data = await response.json();
         if (data && data.errors) {
-          setStatus(data.errors.map(error => error.message).join(', '));
+          console.log(data.errors.map(error => error.message).join(', '));
         } else {
-          setStatus('Oops! There was a problem submitting your form');
+          setStatus(response.status);
+          setTimeout(()=>setStatus(false),5000)
+          return(`<p>hola</p>`)
         }
       }
     } catch (error) {
-      setStatus('Oops! There was a problem submitting your form');
+      setStatus(500);
     }
   };
 
+
+
   useEffect(()=>{
     console.log(status);
-  },[status])
+  },[status,reloadCaptcha])
 
 
 
@@ -58,7 +66,7 @@ const FormularioTest = () => {
       </Helmet>
 
       <form 
-        className='w-96 bg-[#09181d] px-8 flex flex-col items-center my-6' 
+        className='relative w-96 bg-[#09181d] rounded-md px-8 flex flex-col items-center my-6' 
         data-aos='zoom-out-right' 
         data-aos-duration='2000' 
         onSubmit={handleSubmit}>
@@ -116,7 +124,9 @@ const FormularioTest = () => {
         ></textarea>
       </div>
 
-      <div required className="g-recaptcha" data-sitekey={import.meta.env.VITE_API_KEY_SITE_CAPTCHA}></div>
+      {reloadCaptcha && 
+        <div required className="g-recaptcha" data-sitekey={import.meta.env.VITE_API_KEY_SITE_CAPTCHA}></div>
+      }
 
       <button
         className='bg-[#20b47b] hover:bg-[#1ca06d] active:bg-[#207044] w-40 h-10 rounded-md mx-2 my-4 flex justify-center items-center cursor-pointer'
@@ -125,9 +135,28 @@ const FormularioTest = () => {
         <Icon icon="mingcute:send-fill" width='22' className='mr-1'/>
         Enviar
       </button>
+    {status === 200 ? 
+      <div className='fixed flex flex-col rounded-md justify-center items-center px-10 bg-[#000000e1] w-full h-full'>
+        <Icon icon="meteocons:pollen-tree-fill" width="150" hFlip={true} />
+        <p className='text-center'>
+          Mensaje enviado correctamente, pronto atendere tu solicitud
+        </p>
+      </div>
+     : status === 400 &&
+      <div className='fixed flex flex-col rounded-md justify-center items-center px-10 bg-[#000000e1] w-full h-full'>
+        <Icon icon="meteocons:extreme-night-haze-fill" width="150" />
+        <p className='text-center'>
+          Hubo un error interno al intentar enviar el mensaje, intentalo mas tarde
+        </p>
+      </div>
+    }
     </form>
     </>
   );
 }
 
+const FormularioTest = () => {
+  return ( <ValidacionFormulario /> );
+}
+ 
 export default FormularioTest;
