@@ -233,7 +233,6 @@ const SobreMi = () => {
         </CardHabilidades>
       </div>
 
-      <FormularioContacto />
       <FormularioTest/>
   	</>
   );
