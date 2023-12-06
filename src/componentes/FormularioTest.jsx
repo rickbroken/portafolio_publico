@@ -5,12 +5,49 @@ import { Icon } from '@iconify/react';
 
 
 const FormularioTest = () => {
-  const [state, handleSubmit] = useForm("mqkvrkvk");
-  if (state.succeeded) {
-      return <p>¡Gracias por tu interes!</p>;
-  }
+  const [status, setStatus] = useState('');
 
-  console.log(state);
+  const [nombres, setNombres] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState(''); 
+
+  const handleSubmit = async (event) => {
+    console.log(event.target);
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    try {
+      const response = await fetch('https://formspree.io/f/mqkvrkvk', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      console.log(response);
+  
+      if (response.ok) {
+        setStatus('Thanks for your submission!');
+        event.target.reset();
+      } else {
+        const data = await response.json();
+        if (data && data.errors) {
+          setStatus(data.errors.map(error => error.message).join(', '));
+        } else {
+          setStatus('Oops! There was a problem submitting your form');
+        }
+      }
+    } catch (error) {
+      setStatus('Oops! There was a problem submitting your form');
+    }
+  };
+
+  useEffect(()=>{
+    console.log(status);
+  },[status])
+
 
 
 
@@ -34,14 +71,11 @@ const FormularioTest = () => {
           type='text'
           name='name'
           id='name'
-          required
+          value={nombres}
+          onChange={(e)=>setNombres(e.target.value)}
         />
       </div>
-      <ValidationError 
-        prefix='Name' 
-        field='name'
-        errors={state.errors}
-      />
+      
       <div className='w-full my-3'>
         <label htmlFor='email' className='font-[200]'>Correo electronico:</label>
         <input 
@@ -49,14 +83,12 @@ const FormularioTest = () => {
           type='email'
           name='email'
           id='email'
+          value={email}
+          onChange={(e)=>setEmail(e.target.value)}
           required
         />
       </div>
-      <ValidationError 
-        prefix='Email' 
-        field='email'
-        errors={state.errors}
-      />
+
       <div className='w-full my-3'>
         <label htmlFor='phone' className='font-[200]'>
           Telefono: <span className='text-sm text-[#858282]'>(Con indicativo del pais)</span>
@@ -66,6 +98,8 @@ const FormularioTest = () => {
           type='tel'
           name='phone'
           id='phone'
+          value={phone}
+          onChange={(e)=>setPhone(e.target.value)}
         />
       </div>
       <div className='w-full my-3'>
@@ -77,26 +111,17 @@ const FormularioTest = () => {
           type="text"
           name='message'
           id='message'
-          required  
+          value={message}
+          onChange={(e)=>setMessage(e.target.value)}
         ></textarea>
       </div>
-      <ValidationError 
-        prefix='Message' 
-        field='message'
-        errors={state.errors}
-      />
 
-      <div required className="g-recaptcha" data-sitekey="6LdugycpAAAAAL21UCkWhTFiVi_0UzTm3glM5H0r"></div>
-      <ValidationError 
-        prefix='Message' 
-        field='message'
-        errors={state.errors}
-      />
+      <div required className="g-recaptcha" data-sitekey={import.meta.env.VITE_API_KEY_SITE_CAPTCHA}></div>
 
       <button
-        className='bg-[#20b47b] hover:bg-[#1ca06d] active:bg-[#207044] w-40 h-10 rounded-md mx-2 my-4 flex justify-center items-center'
-        type="submit" 
-        disabled={state.submitting}>
+        className='bg-[#20b47b] hover:bg-[#1ca06d] active:bg-[#207044] w-40 h-10 rounded-md mx-2 my-4 flex justify-center items-center cursor-pointer'
+        type="submit"
+      >
         <Icon icon="mingcute:send-fill" width='22' className='mr-1'/>
         Enviar
       </button>
