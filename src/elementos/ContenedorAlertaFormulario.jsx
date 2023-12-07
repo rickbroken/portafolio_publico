@@ -1,10 +1,14 @@
-import { Icon } from '@iconify/react';
 import React from 'react';
+import { Icon } from '@iconify/react';
 
-const ContenedorAlertaFormulario = ({text,subText,icon,color}) => {
+const ContenedorAlertaFormulario = ({text,subText,icon,color,errorServer}) => {
   return (
     <div className='fixed flex flex-col rounded-md justify-center items-center px-10 bg-[#000000e1] w-full h-full'>
-      <Icon icon={icon} color={color} width="150" />
+      {errorServer ?
+        <Icon color={color} width="150" icon={icon} />
+      :
+        <Icon icon={icon} color={color} width="150" />
+      }
       <p className='text-center my-4'>
         {text}
         <br/>

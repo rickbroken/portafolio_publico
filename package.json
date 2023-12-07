@@ -27,7 +27,8 @@
     "webfontloader": "1.6.28"
   },
   "devDependencies": {
-    "@iconify/react": "4.1.1",
+    "@iconify/icons-line-md": "^1.2.30",
+    "@iconify/react": "^4.1.1",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
     "@vitejs/plugin-react": "4.0.1",

@@ -6,6 +6,7 @@ import ContInputFormulario from '../elementos/ContInputFormulario';
 import { handleSubmitContacto } from '../funciones/handleSubmiContacto';
 import { bloqueoTemporalFormulario } from '../funciones/bloqueoTemporalFormulario';
 import { handleNameAndPhone } from '../funciones/handleNameAndPhone';
+import alertTwotone from '@iconify/icons-line-md/alert-twotone';
 
 
 const ValidacionFormulario = () => {
@@ -100,9 +101,10 @@ const ValidacionFormulario = () => {
           text="Verifica que no seas un robot, click en 'No soy un robot'  :)"
         />
       : status === 500 &&
-        <ContenedorAlertaFormulario 
+        <ContenedorAlertaFormulario
+          errorServer={true}
+          icon={alertTwotone}
           color="#df2c2c"
-          icon="line-md:alert-twotone"
           text="Error interno del servidor, intentalo mas tarde :("
         />
       }
