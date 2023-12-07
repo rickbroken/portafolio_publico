@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Icon } from '@iconify/react';
-import ContenedorAlertaFormulario from '../elementos/ContenedorAlertaFormulario';
 import ContInputFormulario from '../elementos/ContInputFormulario';
 import { handleSubmitContacto } from '../funciones/handleSubmiContacto';
 import { bloqueoTemporalFormulario } from '../funciones/bloqueoTemporalFormulario';
 import { handleNameAndPhone } from '../funciones/handleNameAndPhone';
-import alertTwotone from '@iconify/icons-line-md/alert-twotone';
+import ContenedorAlertas from '../elementos/sobreMi/ContenedorAlertas';
 
 
 const ValidacionFormulario = () => {
@@ -87,27 +86,7 @@ const ValidacionFormulario = () => {
         <Icon icon="mingcute:send-fill" width='22' className='mr-1'/>
         Enviar
       </button>
-        
-      {status === 200 ?
-        <ContenedorAlertaFormulario
-          color="#3788f1"
-          icon="line-md:check-all"
-          text="Mensaje enviado correctamente, pronto atendere tu solicitud."
-          subText="Puedes enviar un nuevo mensaje despues de 72 Horas"
-        />
-      : status === 'reCAPTCHA failed' ?
-        <ContenedorAlertaFormulario
-          icon="logos:recaptcha"
-          text="Verifica que no seas un robot, click en 'No soy un robot'  :)"
-        />
-      : status === 500 &&
-        <ContenedorAlertaFormulario
-          errorServer={true}
-          icon={alertTwotone}
-          color="#df2c2c"
-          text="Error interno del servidor, intentalo mas tarde :("
-        />
-      }
+        <ContenedorAlertas status={status} />
     </form>
     </>
   );
