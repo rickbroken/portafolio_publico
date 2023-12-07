@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@formspree/react": "^2.5.1",
+    "@formspree/react": "2.5.1",
     "aos": "2.3.4",
     "clipboard-copy": "^4.0.1",
     "date-fns": "2.30.0",

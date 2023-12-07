@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { Helmet } from 'react-helmet';
 import { Icon } from '@iconify/react';
+import { getTime } from 'date-fns';
 
 
 const ValidacionFormulario = () => {
@@ -12,6 +13,24 @@ const ValidacionFormulario = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState(''); 
+
+
+  useState(()=>{
+    if(localStorage.getItem('formularioEnviado') === 'true'){
+      setStatus(200);
+    }
+    if(localStorage.getItem('fechaEnvio') !== null){
+      const fechaActual = getTime(new Date());
+      const fechaEnvio = parseInt(localStorage.getItem('fechaEnvio'));
+      const tiempoUnixBloqueoTemp = 259200000;
+      if(fechaActual > fechaEnvio + tiempoUnixBloqueoTemp){
+        localStorage.setItem('formularioEnviado', false);
+        setStatus(false);
+      }
+    }
+  },[status])
+
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -27,6 +46,8 @@ const ValidacionFormulario = () => {
       });
       
       if (response.ok) {
+        localStorage.setItem('formularioEnviado', true);
+        localStorage.setItem('fechaEnvio',getTime(new Date()));
         event.target.reset();
         setNombres('');
         setEmail('');
@@ -40,23 +61,16 @@ const ValidacionFormulario = () => {
         if (data && data.errors) {
           console.log(data.errors.map(error => error.message).join(', '));
         } else {
-          setStatus(response.status);
+          console.log(data.error);
+          setStatus(data.error);
           setTimeout(()=>setStatus(false),5000)
-          return(`<p>hola</p>`)
         }
       }
     } catch (error) {
       setStatus(500);
+      setTimeout(()=>setStatus(false),5000)
     }
   };
-
-
-
-  useEffect(()=>{
-    console.log(status);
-  },[status,reloadCaptcha])
-
-
 
 
   return (
@@ -81,6 +95,7 @@ const ValidacionFormulario = () => {
           id='name'
           value={nombres}
           onChange={(e)=>setNombres(e.target.value)}
+          required
         />
       </div>
       
@@ -108,6 +123,7 @@ const ValidacionFormulario = () => {
           id='phone'
           value={phone}
           onChange={(e)=>setPhone(e.target.value)}
+          required
         />
       </div>
       <div className='w-full my-3'>
@@ -137,16 +153,25 @@ const ValidacionFormulario = () => {
       </button>
     {status === 200 ? 
       <div className='fixed flex flex-col rounded-md justify-center items-center px-10 bg-[#000000e1] w-full h-full'>
-        <Icon icon="meteocons:pollen-tree-fill" width="150" hFlip={true} />
+        <Icon icon="line-md:check-all" color='#3788f1' width="150"/>
         <p className='text-center'>
-          Mensaje enviado correctamente, pronto atendere tu solicitud
+          Mensaje enviado correctamente, pronto atendere tu solicitud.
+          <br/>
+          <span className='text-gray-600 text-sm px-2'>Puedes enviar un nuevo mensaje despues de 72 Horas</span>
         </p>
       </div>
-     : status === 400 &&
+     : status === 'reCAPTCHA failed' ?
       <div className='fixed flex flex-col rounded-md justify-center items-center px-10 bg-[#000000e1] w-full h-full'>
-        <Icon icon="meteocons:extreme-night-haze-fill" width="150" />
-        <p className='text-center'>
-          Hubo un error interno al intentar enviar el mensaje, intentalo mas tarde
+        <Icon icon="logos:recaptcha" width="150" />
+        <p className='text-center my-4'>
+          Verifica que no seas un robot, click en 'No soy un robot'  :)
+        </p>
+      </div>
+    : status === 500 &&
+      <div className='fixed flex flex-col rounded-md justify-center items-center px-10 bg-[#000000e1] w-full h-full'>
+        <Icon icon="line-md:alert-twotone" color='#df2c2c' width="150" />
+        <p className='text-center my-4'>
+          Error interno del servidor, intentalo mas tarde :(
         </p>
       </div>
     }
