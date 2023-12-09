@@ -22,7 +22,6 @@ export const handleSubmitContacto = async (event,limpiarFormulario,setStatus) =>
       if (data && data.errors) {
         console.log(data.errors.map(error => error.message).join(', '));
       } else {
-        console.log(data.error);
         setStatus(data.error);
         setTimeout(()=>setStatus(false),5000)
       }

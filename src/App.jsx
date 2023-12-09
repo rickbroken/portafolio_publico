@@ -10,8 +10,7 @@ import SobreMi from './componentes/SobreMi'
 import MenuNavegacion from './componentes/MenuNavegacion'
 import Footer from './componentes/Footer';
 import Login from './componentes/login';
-import RutaPrivada from './componentes/RutaPrivada';
-import { useAuth } from './contextos/useAuth';
+import useObtenerPerfil from './hooks/useObtenerPerfil';
 
 
 WebFont.load({

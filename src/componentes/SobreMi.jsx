@@ -16,17 +16,16 @@ import BtnGuardarBackend from '../elementos/sobreMi/botones/BtnGuardarBackend';
 import TituloSobreMi from '../elementos/sobreMi/TituloSobreMi';
 import QuienSoy from './QuienSoy';
 import CardHabilidades from '../elementos/sobreMi/CardHabilidades';
-import FormularioContacto from './FormularioContacto';
 import BtnAgregarFrontend from '../elementos/sobreMi/botones/BtnAgregarFrontend';
 import BtnAgregarHerramientas from '../elementos/sobreMi/botones/BtnAgregarHerramientas';
 import BtnAgregarBackend from '../elementos/sobreMi/botones/BtnAgregarBackend';
 import FormularioTest from './FormularioTest';
 
 const SobreMi = () => {
-  const {perfil} = useObtenerPerfil();
   const [agregandoHerramienta, setAgregandoHerramienta] = useState(false);
   const [agregandoFrontend, setAgregandoFrontend] = useState(false);
   const [agregandoBackend, setAgregandoBackend] = useState(false);
+  const {perfil} = useObtenerPerfil();
 
   const [cambioHerramientas, setCambioHerramientas] = useState(false);
   const [cambioFrontend, setCambioFrontend] = useState(false);
@@ -41,102 +40,18 @@ const SobreMi = () => {
   }, []);
 
 
-  const [herramientas, setHerramientas] = useState([
-    {
-      habilidad: "Figma",
-      icon: "skill-icons:figma-light",
-      id: uuidv4()
-    },
-    {
-      habilidad: "GitHub",
-      icon: "jam:github",
-      id: uuidv4()
-    },
-    {
-      habilidad: "Git",
-      icon: "skill-icons:git",
-      id: uuidv4()
-    },
-    {
-      habilidad: "XAMPP",
-      icon: "logos:xampp",
-      id: uuidv4()
-    }
-  ]);
-  const [frondtend, setFrontend] = useState([
-    {
-      habilidad: "React JS",
-      icon: "skill-icons:react-dark",
-      id: uuidv4()
-    },
-    {
-      habilidad: "HTML5",
-      icon: "vscode-icons:file-type-html",
-      id: uuidv4()
-    },
-    {
-      habilidad: "CSS3",
-      icon: "vscode-icons:file-type-css",
-      id: uuidv4()
-    },
-    {
-      habilidad: "SASS",
-      icon: "skill-icons:sass",
-      id: uuidv4()
-    },
-    {
-      habilidad: "JavaScript",
-      icon: "vscode-icons:file-type-js-official",
-      id: uuidv4()
-    },
-    {
-      habilidad: "Tailwind CSS",
-      icon: "skill-icons:tailwindcss-light",
-      id: uuidv4()
-    },
-    {
-      habilidad: "Bootstrap",
-      icon: "logos:bootstrap",
-      id: uuidv4()
-    },
-    {
-      habilidad: "Styled Components",
-      icon: "skill-icons:styledcomponents",
-      id: uuidv4()
-    }
-  ]);
-  const [backend, setBackend] = useState([
-    {
-      habilidad: "PHP",
-      icon: "skill-icons:php-dark",
-      id: uuidv4()
-    },
-    {
-      habilidad: "MySql",
-      icon: "logos:mysql",
-      id: uuidv4()
-    },
-    {
-      habilidad: "Firebase Cloud",
-      icon: "vscode-icons:file-type-light-firebasehosting",
-      id: uuidv4()
-    },
-    {
-      habilidad: "Node JS",
-      icon: "skill-icons:nodejs-dark",
-      id: uuidv4()
-    },
-    {
-      habilidad: "Express",
-      icon: "simple-icons:express",
-      id: uuidv4()
-    },
-    {
-      habilidad: "PostMan",
-      icon: "skill-icons:postman",
-      id: uuidv4()
-    }
-  ]);
+  
+  const [herramientas, setHerramientas] = useState([]);
+  const [frondtend, setFrontend] = useState([]);
+  const [backend, setBackend] = useState([]);
+
+  useEffect(()=>{
+    setHerramientas(perfil[0]?.herramientas);
+    setFrontend(perfil[0]?.frontend);
+    setBackend(perfil[0]?.backend);
+  },[perfil])
+
+ 
 
   return ( 
   	<>

@@ -7,7 +7,7 @@ const QuienSoy = ({perfil}) => {
     <div className='bg-[#000000] w-full rounded-sm px-10 py-4' data-aos="zoom-in-down" data-aos-duration="800">
       <p className='text-center'>QUIEN SOY</p>
       {perfil.length !== 0 ?
-        <p className='font-[200]'>{perfil.length !== 0 && perfil[0].quiensoy}</p>
+        <p className='font-[200]'>{perfil[0]?.quiensoy}</p>
         :
         <PrecargaSonbreMi />
       }

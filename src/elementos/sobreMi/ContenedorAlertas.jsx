@@ -11,7 +11,7 @@ const ContenedorAlertas = ({status}) => {
         text="Mensaje enviado correctamente, pronto atendere tu solicitud."
         subText="Puedes enviar un nuevo mensaje despues de 72 Horas"
       />
-    : status === 'reCAPTCHA failed' ?
+    : status === 'reCAPTCHA failed' || status === 'Please complete the reCAPTCHA' ?
       <ContenedorAlertaFormulario
         icon="logos:recaptcha"
         text="Verifica que no seas un robot, click en 'No soy un robot'  :)"
