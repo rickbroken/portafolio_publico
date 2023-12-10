@@ -3,7 +3,6 @@ import { db } from "./firebaseConfig"
 
 
 const actualizarHabilidades = async(id,habilidad,tipoHabilidad) => {
-  console.log(habilidad);
   try {
     await updateDoc(doc(db, 'Perfiles', id),{
       [tipoHabilidad]: habilidad

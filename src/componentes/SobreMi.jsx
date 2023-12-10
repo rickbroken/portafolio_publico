@@ -50,8 +50,6 @@ const SobreMi = () => {
     setFrontend(perfil[0]?.frontend);
     setBackend(perfil[0]?.backend);
   },[perfil])
-
-  console.log(perfil[0]?.frontend);
  
 
   return ( 
@@ -116,7 +114,7 @@ const SobreMi = () => {
               />
             }
             {usuario !== null && !agregandoHerramienta && <BtnAgregarHerramientas setAgregandoHerramienta={setAgregandoHerramienta} />}
-            {usuario !== null && cambioHerramientas && <BtnGuardarHerramientas />}
+            {usuario !== null && cambioHerramientas && <BtnGuardarHerramientas id={perfil[0]?.id} herramientas={herramientas} setCambioHerramientas={setCambioHerramientas} />}
           </div>
         </CardHabilidades>
 
@@ -144,7 +142,7 @@ const SobreMi = () => {
             }
             {usuario !== null && !agregandoBackend && <BtnAgregarBackend setAgregandoBackend={setAgregandoBackend}/>}
             
-            {usuario !== null && cambioBackend && <BtnGuardarBackend />}
+            {usuario !== null && cambioBackend && <BtnGuardarBackend id={perfil[0]?.id} backend={backend} setCambioBackend={setCambioBackend} />}
           </div>
         </CardHabilidades>
       </div>
