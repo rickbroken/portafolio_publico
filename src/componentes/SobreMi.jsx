@@ -42,7 +42,7 @@ const SobreMi = () => {
 
   
   const [herramientas, setHerramientas] = useState([]);
-  const [frondtend, setFrontend] = useState([]);
+  const [frontend, setFrontend] = useState([]);
   const [backend, setBackend] = useState([]);
 
   useEffect(()=>{
@@ -51,6 +51,7 @@ const SobreMi = () => {
     setBackend(perfil[0]?.backend);
   },[perfil])
 
+  console.log(perfil[0]?.frontend);
  
 
   return ( 
@@ -68,27 +69,27 @@ const SobreMi = () => {
         <CardHabilidades>
           <p className='text-center my-4'>Frontend</p>
           <div className='w-full flex flex-col justify-center my-4'>
-            {frondtend?.map((dato)=>(
+            {frontend?.map((dato)=>(
               <ContenedorHabilidades
                 key={dato.id}
                 text={dato.habilidad}
                 icon={dato.icon}
                 id={dato.id}
                 setHabilidad={setFrontend}
-                habilidad={frondtend}
+                habilidad={frontend}
                 setCambio={setCambioFrontend}
               />
             ))}
             {agregandoFrontend &&
               <AgregarFrontend 
-                frontend={frondtend}
+                frontend={frontend}
                 setFrontend={setFrontend}
                 setAgregandoFrontend={setAgregandoFrontend}
                 setCambio={setCambioFrontend}
               />
             }
             {usuario !== null && !agregandoFrontend && <BtnAgregarFrontend setAgregandoFrontend={setAgregandoFrontend} />}
-            {usuario !== null && cambioFrontend && <BtnGuardarFrontend />}
+            {usuario !== null && cambioFrontend && <BtnGuardarFrontend setCambioFrontend={setCambioFrontend} frontend={frontend} id={perfil[0]?.id} />}
           </div>
         </CardHabilidades>
 
