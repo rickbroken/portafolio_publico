@@ -21,6 +21,7 @@ const Login = () => {
   const expresionRegular = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/;
 
   const handleSubmit = async() => {
+    console.log(correo)
     if(!expresionRegular.test(correo)){
       alert('Ingresa un Correo valido');
       return;
@@ -47,6 +48,12 @@ const Login = () => {
       }
     }
   }
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      handleSubmit();
+    }
+  });
 
   return (
     <div className='fondo-login h-screen w-screen flex justify-center items-center'>
