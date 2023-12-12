@@ -18,7 +18,7 @@ const ValidacionFormulario = () => {
 
   useEffect(()=>{
     bloqueoTemporalFormulario(setStatus);
-  },[status])
+  },[status]);
 
   const limpiarFormulario = () =>{
     setNombres('');

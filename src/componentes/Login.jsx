@@ -49,11 +49,6 @@ const Login = () => {
     }
   }
 
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-      handleSubmit();
-    }
-  });
 
   return (
     <div className='fondo-login h-screen w-screen flex justify-center items-center'>
