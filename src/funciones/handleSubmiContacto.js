@@ -12,8 +12,10 @@ export const handleSubmitContacto = async (event,limpiarFormulario,setStatus) =>
     });
     
     if (response.ok) {
+      
       localStorage.setItem('formularioEnviado', true);
-      localStorage.setItem('fechaEnvio',getTime(new Date()));
+      const fechaActual = getTime(new Date());
+      localStorage.setItem('fechaEnvio', fechaActual);
       event.target.reset();
       limpiarFormulario();
       setStatus(response.status);
