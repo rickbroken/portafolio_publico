@@ -3,7 +3,7 @@ import {db} from './firebaseConfig';
 import { format } from "date-fns";
 
 
-const agregarPublicacion = async(textoPublicacion,url,tipoMultimedia,formatoMovil,idUsuario)  => {
+const agregarPublicacion = async(textoPublicacion,url,tipoMultimedia,formatoMovil,idUsuario,nameMuntimedia)  => {
   const fechaActual = new Date();
   const fechaUnix = format(fechaActual, 't');
 
@@ -14,6 +14,7 @@ const agregarPublicacion = async(textoPublicacion,url,tipoMultimedia,formatoMovi
     urlMultimedia: url,
     tipoMultimedia: tipoMultimedia,
     formatoMovil: formatoMovil,
+    nameMuntimedia:nameMuntimedia,
     editado: false
   });
 

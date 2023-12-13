@@ -45,6 +45,7 @@ const Home = () => {
         location.hash === '' ?
         <Publicacion
           publicaciones={publicaciones}
+          nameMuntimedia={data.nameMuntimedia}
           key={i++}
           ImagenPerfil={perfil[0].urlImagenPerfil}
           fecha={formatearFechaUnix(data.fecha)}

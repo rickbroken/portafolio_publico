@@ -23,6 +23,7 @@ const NuevaPublicacion = () => {
 
   const [fileImagen, setFileImagen] = useState();
   let urlMultimedia = '';
+  let nameMultimedia= '';
 
   const handleFile = (e) => {
     setFileImagen(e.target.files[0]);
@@ -45,12 +46,13 @@ const NuevaPublicacion = () => {
         const refImagen = ref(storage, `publicaciones/${fileImagen.name}`);
         await uploadBytes(refImagen,fileImagen);
         urlMultimedia = await getDownloadURL(refImagen);
+        nameMultimedia = fileImagen.name;
       }
       
       //Subir texto
 
       if(fileImagen !== undefined){
-        await agregarPublicacion(textoPublicacion,urlMultimedia,fileImagen.type,formatoMovil, usuario.uid)
+        await agregarPublicacion(textoPublicacion,urlMultimedia,fileImagen.type,formatoMovil, usuario.uid,nameMultimedia)
       } else {
         await agregarPublicacion(textoPublicacion,urlMultimedia,'',formatoMovil,usuario.uid);
       }

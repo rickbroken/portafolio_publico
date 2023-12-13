@@ -11,7 +11,7 @@ import { useAuth } from '../contextos/useAuth';
 import { copiarEnlacePublicacion } from '../funciones/copiarEnlacePublicacion';
 
 
-const Publicacion = ({texto,fecha,id,editado,publicaciones,idUsuario,urlMultimedia,tipoMultimedia,formatoMovil,ImagenPerfil}) => {
+const Publicacion = ({texto,fecha,id,editado,publicaciones,idUsuario,urlMultimedia,tipoMultimedia,formatoMovil,ImagenPerfil,nameMuntimedia}) => {
   const {usuario} = useAuth();
   const {perfil} = useObtenerPerfil();
   const [menuPublicacion, setMenuPublicacion] = useState(false);
@@ -80,7 +80,7 @@ const Publicacion = ({texto,fecha,id,editado,publicaciones,idUsuario,urlMultimed
   
 
   return ( 
-		<div id={id} className={`${formatoMovil ? 'sm:w-6/12' : 'sm:w-full'} mx-auto sm:my-8 my-2 mb-20 rounded-xl font-primaria relative bg-[#131313]`}>
+		<article id={id} className={`${formatoMovil ? 'sm:w-6/12' : 'sm:w-full'} mx-auto sm:my-8 my-2 mb-20 rounded-xl font-primaria relative bg-[#131313]`}>
 			<Icon onClick={()=>setMenuPublicacion(!menuPublicacion)} className='absolute right-5 top-4 cursor-pointer select-none active:select-none focus:select-none' width='30' color='#b8b8b8' icon="solar:menu-dots-bold" />
       {editando &&
         <>
@@ -134,7 +134,7 @@ const Publicacion = ({texto,fecha,id,editado,publicaciones,idUsuario,urlMultimed
         {editando ?
           <textarea type="text" className='w-full max-h-[150px] min-h-[40px] rounded-sm py-2 px-4 font-[200] outline-none my-1' value={nuevoTexto} onChange={(e)=>setNuevoTexto(e.target.value)}></textarea>
           :
-          <p className='font-[200] my-1 break-words' dangerouslySetInnerHTML={{ __html: texto }}/>
+          <p className='font-[200] my-1 break-words' alt={texto} dangerouslySetInnerHTML={{ __html: texto }}/>
         }
 			</div>
 
@@ -169,7 +169,9 @@ const Publicacion = ({texto,fecha,id,editado,publicaciones,idUsuario,urlMultimed
         }
         
         {tipoMultimedia === 'image/png' || tipoMultimedia === 'image/jpeg' ?
-          <a href={urlMultimedia} className='w-full' target='_blanck'><img className='object-cover w-full cursor-pointer'  src={urlMultimedia} /></a>
+          <a href={urlMultimedia} className='w-full' target='_blanck'>
+            <img className='object-cover w-full cursor-pointer' alt={nameMuntimedia}  src={urlMultimedia} />
+          </a>
           : tipoMultimedia === 'video/mp4' &&
           <video controls className='w-full'>
             <source src={urlMultimedia} type='video/mp4' />
@@ -198,7 +200,7 @@ const Publicacion = ({texto,fecha,id,editado,publicaciones,idUsuario,urlMultimed
           idUsuario={idUsuario}
         />
 			</div>
-		</div>
+		</article>
 	);
 }
  
