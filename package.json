@@ -22,6 +22,7 @@
     "react-google-recaptcha-v3": "^1.10.1",
     "react-helmet": "6.1.0",
     "react-router-dom": "6.14.1",
+    "resend": "^2.0.0",
     "sort-by": "0.0.2",
     "uuid": "^9.0.1",
     "webfontloader": "1.6.28"
