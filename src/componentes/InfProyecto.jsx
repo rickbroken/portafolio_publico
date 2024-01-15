@@ -1,6 +1,8 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
 import ContenedorRedesSocialesPerfil from '../elementos/header/ContenedorRedesSocialesPerfil';
+import  Markdown  from  'react-markdown'
+import remarkGfm from 'remark-gfm';
 
 
 const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMultimedia,figma,github,linkedin,demoLive}) => {
@@ -20,7 +22,10 @@ const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMu
 
         <div className='flex justify-center flex-wrap px-8'>
           <div className='md:w-[550px] w-full'>
-            <p className='font-[200] py-4 text-sm'>{descripcion}</p>
+            
+            <p className='font-[200] py-4 text-sm apply-none max-h-[180px] overflow-y-auto'>
+              <Markdown remarkPlugins={[remarkGfm]}>{descripcion}</Markdown>
+            </p>
 
             <div className='flex max-w-full min-w-full max-h-[300px] min-h-[250px] my-4 justify-center items-center rounded-md overflow-hidden'>
               <a href={linkedin !== '' && linkedin} target="_blank">
@@ -32,7 +37,7 @@ const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMu
           <div className='md:w-[260px] w-full mx-w-4/12 flex flex-col items-start sm:pt-6 pb-6 sm:pb-0 px-8'>
             <p>Caracteristicas</p>
             <ul className='font-[200] text-[#adacac] list-disc max-w-full leading-7'>
-              {caracteristicas.map((caracteristica)=><li>{caracteristica}</li>)}
+              {caracteristicas.map((caracteristica,index)=><li key={index}>{caracteristica}</li>)}
             </ul>
           </div>
         </div>

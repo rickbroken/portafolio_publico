@@ -3,14 +3,17 @@
 @tailwind utilities;
 
 :root {
-  font-size: 16px;
   font-family: 'Lexend';
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #0a3951;
 }
-
+.eliminar-estilos-markdown *{
+  font-weight: 200;
+  text-decoration: none;
+  text-transform: none;
+}
 p a {
   color: #14a6e0;
 }

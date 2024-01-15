@@ -53,6 +53,7 @@ const Proyectos = () => {
         proyectos?.map((data)=>(
           location.hash.substring(1) === '' ?
           <Proyecto
+            key={data.id}
             idDoc={data.id}
             titulo={data.titulo}
             descripcion={data.descripcion}
