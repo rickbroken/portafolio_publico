@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Icon } from '@iconify/react';
 import ContenedorRedesSocialesPerfil from '../elementos/header/ContenedorRedesSocialesPerfil';
 import  Markdown  from  'react-markdown';
@@ -7,24 +7,33 @@ import rehypeRaw from 'rehype-raw';
 
 
 const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMultimedia,figma,github,linkedin,demoLive}) => {
+  const [scrollAnimate, setScrollAnimate] = useState(true);
+
+  setTimeout(() => {
+    setScrollAnimate(false);
+  }, 3515);
 
   return (
     <div onClick={(e)=> e.target.id === 'fondoBloqueo' &&  setMostratVentana(false)} id='fondoBloqueo' className='fixed backdrop-blur-sm z-10 top-0 left-0 bg-[#f3f6f80c] w-full h-screen flex justify-center md:items-center'>
       <div className='bg-[#1d1d1d] mx-4 md:mx-0 max-w-4xl rounded-2xl relative z-20 flex flex-col items-center overflow-scroll overflow-y-auto overflow-x-auto sm:my-0  my-10 sm:mt-0 md:h-[600px] justify-between'>
 
         <div className='absolute top-4 right-4 cursor-pointer'>
-          
           <Icon onClick={()=>setMostratVentana(false)} icon="akar-icons:cross" color="white" width="30" />
         </div>
 
-        <div className='mx-auto text-2xl md:pt-3 pt-12 pb-3'>
+        <div className='mx-auto text-xl sm:text-2xl md:pt-3 pt-12 pb-3'>
           <p className='text-center'>{titulo}</p>
         </div>
 
-        <div className='flex justify-center flex-wrap px-8'>
+        <div className='flex justify-center flex-wrap px-8 w-full'>
           <div className='md:w-[550px] w-full'>
             
-            <div className='max-h-[160px] overflow-ellipsis tracking-wide pr-4 font-[200] py-4 text-sm apply-none overflow-y-auto'>
+            <div className='relative max-h-[160px] overflow-ellipsis tracking-wide font-[200] py-4 text-sm apply-none overflow-y-auto'>
+              <Icon 
+                className={`${scrollAnimate ? 'absolute animate-bounce ' : 'hidden'}   right-6 top-16`} 
+                icon="ic:round-swipe-up" 
+                width={60} 
+                color='#ffffff97'/>
               <Markdown className="overflow-ellipsis" rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}>{descripcion}</Markdown>
             </div>
 
