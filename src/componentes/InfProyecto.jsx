@@ -1,8 +1,9 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
 import ContenedorRedesSocialesPerfil from '../elementos/header/ContenedorRedesSocialesPerfil';
-import  Markdown  from  'react-markdown'
+import  Markdown  from  'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 
 const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMultimedia,figma,github,linkedin,demoLive}) => {
@@ -23,9 +24,9 @@ const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMu
         <div className='flex justify-center flex-wrap px-8'>
           <div className='md:w-[550px] w-full'>
             
-            <p className='font-[200] py-4 text-sm apply-none max-h-[180px] overflow-y-auto'>
-              <Markdown remarkPlugins={[remarkGfm]}>{descripcion}</Markdown>
-            </p>
+            <div className='max-h-[160px] tracking-wide pr-4 font-[200] py-4 text-sm apply-none overflow-y-auto'>
+              <Markdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}>{descripcion}</Markdown>
+            </div>
 
             <div className='flex max-w-full min-w-full max-h-[300px] min-h-[250px] my-4 justify-center items-center rounded-md overflow-hidden'>
               <a href={linkedin !== '' && linkedin} target="_blank">

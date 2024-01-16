@@ -85,7 +85,7 @@ const FormularioEditarProyecto = ({setFormularioEditarProyecto,titulo,descripcio
 
           <div className='w-full my-3'>
             <p className='font-[200]'>Descripcion del proyecto:</p>
-            <textarea maxLength='420' className='w-full py-2 pl-4 outline-none font-[200] min-h-[160px] max-h-52' type="text" value={descripcionNueva} onChange={(e)=>setDescripcionNueva(e.target.value)}></textarea>
+            <textarea className='w-full py-2 pl-4 outline-none font-[200] min-h-[160px] max-h-52' type="text" value={descripcionNueva} onChange={(e)=>setDescripcionNueva(e.target.value)}></textarea>
           </div>
 
           <div className='w-full my-3'>
@@ -99,7 +99,7 @@ const FormularioEditarProyecto = ({setFormularioEditarProyecto,titulo,descripcio
             />
             <div className='h-48 bg-[#70707029] mt-2 rounded-sm flex p-2 flex-wrap content-start overflow-hidden overflow-y-auto'>
               {listaCaracteristicasNueva.map((caracteristica)=>
-                <span
+                <span key={caracteristica}
                   className='bg-[#767171] flex justify-between items-center py-2 h-10 px-2 rounded-sm my-2 mx-2 select-none'
                 >
                   {caracteristica}

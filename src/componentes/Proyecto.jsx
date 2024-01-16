@@ -81,11 +81,11 @@ const Proyecto = ({titulo,descripcion,caracteristicas,figma,linkedin,github,demo
         <img className='w-full max-h-[190px] select-none object-cover' src={urlMultimediaPrev} />
       </div>
       <p className='my-1 text-center w-full'>{titulo}</p>
-        <p className='eliminar-estilos-markdown font-[100] px-3 leading-5 max-h-16 text-ellipsis overflow-hidden'>
+        <span className='eliminar-estilos-markdown font-[100] px-3 leading-5 max-h-16 text-ellipsis overflow-hidden'>
           <Markdown>
-            {descripcion}
+            {descripcion.replace(/<[^>]*>/g, "")}
           </Markdown>
-        </p>
+        </span>
       <div className='flex w-11/12 mx-auto justify-between py-2 pb-4'>
         <button onClick={()=>setMostratVentana(true)} className='bg-[#1e6994] w-7/12 py-2 mx-2 rounded-md'>Ver Mas</button>
         {github !== '' &&
