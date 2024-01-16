@@ -23,7 +23,6 @@ Que esperas te invito a descargar el proyecto y ponerlo en marcha como tu portaf
 
 Link Del Portafolio: [Ricbroken.com](<https://www.rickbroken.com/>)
 <br>
-<br>
 
-Saber mas en linkedin: [Ir a publicacion](<https://www.linkedin.com/posts/rick-broken_reactjs-portafolio-activity-7112157733469974530-0Vyj?utm_source=share&utm_medium=member_desktop>)
+Saber mas en linkedin: [Ir a publicacion](<https://www.linkedin.com/posts/rick-broken_reactjs-portafolio-activity-7112157733469974530-0Vyj?utm_source=share&utm_medium=member_desktop>){:target="_blank"}
 
