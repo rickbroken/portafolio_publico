@@ -15,7 +15,7 @@ Que esperas te invito a descargar el proyecto y ponerlo en marcha como tu portaf
 ## **Instalaciòn en entorno local**
 ---
 
-![Texto alternativo](https://play-lh.googleusercontent.com/PCpXdqvUWfCW1mXhH1Y_98yBpgsWxuTSTofy3NGMo9yBTATDyzVkqU580bfSln50bFU)
+![Texto alternativo](https://www.linode.com/docs/guides/how-to-install-git-and-clone-a-github-repository/git-github-workflow-1000w.png)
 
 ---
 
