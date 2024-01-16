@@ -15,10 +15,6 @@ Que esperas te invito a descargar el proyecto y ponerlo en marcha como tu portaf
 
 ## **Instalaciòn en entorno local**
 
-* [ ] JS
-* [x] React
-* [ ] Next JS
-* [x] Python
 
 * Clonar repositorio en la carpeta de tu elección
 * Crea una cuenta en Firebase y creas un proyecto nuevo, y agrega tus APY KEYS en el archivo src/firebase/firebaseConfig.js
