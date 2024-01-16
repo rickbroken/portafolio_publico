@@ -11,19 +11,24 @@ const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMu
   const [README, setREADME] = useState('');
 
   useEffect(()=>{
-    (async()=>{
-
-      const res = await fetch('https://api.github.com/repos/rickbroken/portafolio_publico/contents/README.md');
-    
-      if(res.ok){
-        const data = await res.json()
-        console.log(data);
-        const decodedContent = decodeURIComponent(escape(atob(data.content)));
-        setREADME(decodedContent);
-      } else {
-        console.log('Hubo un error al intentar traer informacion de GitHub');
-      }
-    })()
+    try {
+      (async()=>{
+  
+        const res = await fetch('https://api.github.com/repos/rickbroken/portafolio_publico/contents/README.md');
+      
+        if(res.ok){
+          const data = await res.json()
+          console.log(data);
+          const decodedContent = decodeURIComponent(escape(atob(data.content)));
+          setREADME(decodedContent);
+        } else {
+          console.log('Hubo un error al intentar traer informacion de GitHub');
+          console.log(res);
+        }
+      })()
+    } catch (error) {
+      console.log(error);
+    }
 
   },[])
 

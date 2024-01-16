@@ -15,12 +15,16 @@ Que esperas te invito a descargar el proyecto y ponerlo en marcha como tu portaf
 
 ## **Instalaciòn en entorno local**
 
+* [ ] JS
+* [x] React
+* [ ] Next JS
+* [x] Python
 
-- Clonar repositorio en la carpeta de tu elección
-- Crea una cuenta en Firebase y creas un proyecto nuevo, y agrega tus APY KEYS en el archivo src/firebase/firebaseConfig.js
-- Sigue los pasos de instalacion de firebase en tu entorno en la documentacion de firebase
-- Ejecutar en la consola de comandos npm install
-- Listo para correr el proyecto NO tienes que crear Colecciones en fibare ya que se crean automaticamente a medida que se va interactuando con la aplicacion web.
+* Clonar repositorio en la carpeta de tu elección
+* Crea una cuenta en Firebase y creas un proyecto nuevo, y agrega tus APY KEYS en el archivo src/firebase/firebaseConfig.js
+* Sigue los pasos de instalacion de firebase en tu entorno en la documentacion de firebase
+* Ejecutar en la consola de comandos npm install
+* Listo para correr el proyecto NO tienes que crear Colecciones en fibare ya que se crean automaticamente a medida que se va interactuando con la aplicacion web.
 <br>
 <br>
 
