@@ -12,7 +12,13 @@ Después de notar la falta de dinamismo en los portafolios tradicionales que req
 Que esperas te invito a descargar el proyecto y ponerlo en marcha como tu portafolio personal.🎯
 <br>
 
-## Instalaciòn en entorno local
+## **Instalaciòn en entorno local**
+---
+
+![Texto alternativo](https://play-lh.googleusercontent.com/PCpXdqvUWfCW1mXhH1Y_98yBpgsWxuTSTofy3NGMo9yBTATDyzVkqU580bfSln50bFU)
+
+---
+
 1. Clonar repositorio en la carpeta de tu elección
 2. Crea una cuenta en Firebase y creas un proyecto nuevo, y agrega tus APY KEYS en el archivo src/firebase/firebaseConfig.js
 3. Sigue los pasos de instalacion de firebase en tu entorno en la documentacion de firebase
@@ -21,8 +27,8 @@ Que esperas te invito a descargar el proyecto y ponerlo en marcha como tu portaf
 <br>
 <br>
 
-Link Del Portafolio: [Ricbroken.com](<https://www.rickbroken.com/>)
+**Link Del Portafolio:** [Ricbroken.com](<https://www.rickbroken.com/>)
 <br>
 
-Saber mas en linkedin: [Ir a publicacion](<https://www.linkedin.com/posts/rick-broken_reactjs-portafolio-activity-7112157733469974530-0Vyj?utm_source=share&utm_medium=member_desktop>){:target="_blank"}
+**Saber mas en linkedin:** [Ir a publicacion](<https://www.linkedin.com/posts/rick-broken_reactjs-portafolio-activity-7112157733469974530-0Vyj?utm_source=share&utm_medium=member_desktop>)
 
