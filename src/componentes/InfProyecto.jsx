@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import ContenedorRedesSocialesPerfil from '../elementos/header/ContenedorRedesSocialesPerfil';
 import  Markdown  from  'react-markdown';
@@ -7,6 +7,26 @@ import rehypeRaw from 'rehype-raw';
 
 
 const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMultimedia,figma,github,linkedin,demoLive}) => {
+
+  const [README, setREADME] = useState('');
+
+  useEffect(()=>{
+    (async()=>{
+
+      const res = await fetch('https://api.github.com/repos/rickbroken/portafolio_publico/contents/README.md');
+    
+      if(res.ok){
+        const data = await res.json()
+        console.log(data);
+        const decodedContent = decodeURIComponent(escape(atob(data.content)));
+        setREADME(decodedContent);
+      } else {
+        console.log('Hubo un error al intentar traer informacion de GitHub');
+      }
+    })()
+
+  },[])
+
 
   return (
     <div onClick={(e)=> e.target.id === 'fondoBloqueo' &&  setMostratVentana(false)} id='fondoBloqueo' className='fixed backdrop-blur-sm z-10 top-0 left-0 bg-[#f3f6f80c] w-full h-screen flex justify-center md:items-center'>
@@ -25,7 +45,7 @@ const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMu
           <div className='md:w-[550px] w-full'>
             
             <div className='max-h-[160px] tracking-wide pr-4 font-[200] py-4 text-sm apply-none overflow-y-auto'>
-              <Markdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}>{descripcion}</Markdown>
+              <Markdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}>{README}</Markdown>
             </div>
 
             <div className='flex max-w-full min-w-full max-h-[300px] min-h-[250px] my-4 justify-center items-center rounded-md overflow-hidden'>

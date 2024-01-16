@@ -1,4 +1,4 @@
-# Portafolio profesional con funcionalidades de Red Social
+# **Portafolio profesional con funcionalidades de Red Social**
 
 Después de notar la falta de dinamismo en los portafolios tradicionales que requerían cambios en el código raíz largo y complejo🙁, decidí crear un portafolio innovador y dinámico.😀 En el cual el creador del portafolio pueda actualizar fácilmente su información con solo unos clics, eliminando la necesidad de lidiar con el código subyacente y haciendo que la gestión del portafolio sea mucho más sencilla y menos estresante.✨
 
