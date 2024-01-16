@@ -11,6 +11,7 @@ Después de notar la falta de dinamismo en los portafolios tradicionales que req
 <br>
 Que esperas te invito a descargar el proyecto y ponerlo en marcha como tu portafolio personal.🎯
 <br>
+<br>
 
 ## **Instalaciòn en entorno local**
 
