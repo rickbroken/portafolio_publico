@@ -12,6 +12,10 @@ const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMu
     pasoDos: false,
     pasoTres: false
   });
+  
+  const body = document.body;
+  body.style.overflowY = 'hidden';
+
 
   useEffect(()=>{
     if(Boolean(localStorage.getItem('welcomeProyecto')) !== true){
@@ -25,15 +29,20 @@ const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMu
     setWelcome({pasoTres: false});
   }
 
+  const closeWindow = () => {
+    setMostratVentana(false)
+    body.style.overflowY = 'visible';
+  }
+
   return (
-    <div onClick={(e)=> e.target.id === 'fondoBloqueo' &&  setMostratVentana(false)} id='fondoBloqueo' className='fixed backdrop-blur-sm z-10 top-0 left-0 bg-[#f3f6f80c] w-full h-screen flex justify-center md:items-center'>
+    <div onClick={(e)=> e.target.id === 'fondoBloqueo' &&  closeWindow()} id='fondoBloqueo' className='fixed backdrop-blur-sm z-10 top-0 left-0 bg-[#f3f6f80c] w-full h-screen flex justify-center md:items-center'>
       <div className='bg-[#1d1d1d] mx-4 md:mx-0 max-w-4xl rounded-2xl relative z-20 flex flex-col items-center overflow-scroll overflow-y-auto overflow-x-auto sm:my-0  my-10 sm:mt-0 md:h-[600px] justify-between'>
         {welcome.pasoUno || welcome.pasoDos || welcome.pasoTres && true ?
           <div className='fixed left-0 top-0 w-full h-screen bg-[#0e3747a8] z-30'></div> : false
         }
 
         <div className='absolute top-4 right-4 cursor-pointer'>
-          <Icon onClick={()=>setMostratVentana(false)} icon="akar-icons:cross" color="white" width="30" />
+          <Icon onClick={()=>closeWindow()} icon="akar-icons:cross" color="white" width="30" />
         </div>
 
         <div className='mx-auto text-xl sm:text-2xl md:pt-3 pt-12 pb-3'>
