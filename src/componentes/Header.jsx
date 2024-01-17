@@ -5,7 +5,6 @@ import ContenedorImgPerfil from '../elementos/header/ContenedorImgPerfil'
 import ContenedorDescripcionPerfil from '../elementos/header/ContenedorDescripcionPerfil'
 import ContenedorTextoPerfil from '../elementos/header/ContenedorTextosPerfil'
 import ContenedorRedesSocialesPerfil from '../elementos/header/ContenedorRedesSocialesPerfil'
-import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react'
 import ConfigPerfil from './ConfigPerfil'
 import useObtenerPerfil from '../hooks/useObtenerPerfil'

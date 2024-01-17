@@ -102,12 +102,13 @@ const FormularioAgregarProyecto = ({setFormularioAgregarProyecto}) => {
               onKeyDown={handleKeyPress}
             />
             <div className='h-48 bg-[#70707029] mt-2 rounded-sm flex p-2 flex-wrap content-start overflow-hidden overflow-y-auto'>
-              {listaCaracteristicas.map((caracteristica)=>
+              {listaCaracteristicas.map((caracteristica,index)=>
                 <span
+                  key={index}
                   className='bg-[#767171] flex justify-between items-center py-2 h-10 px-2 rounded-sm my-2 mx-2 select-none'
                 >
                   {caracteristica}
-                <img 
+                <img
                   onClick={(e)=>eliminarCaracteristica(e)}
                   id={caracteristica}
                   src={IcoClose}

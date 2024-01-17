@@ -1,5 +1,4 @@
 import './App.css'
-import React from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Header from './componentes/Header'
 import Home from './componentes/Home'
@@ -10,7 +9,6 @@ import SobreMi from './componentes/SobreMi'
 import MenuNavegacion from './componentes/MenuNavegacion'
 import Footer from './componentes/Footer';
 import Login from './componentes/login';
-import useObtenerPerfil from './hooks/useObtenerPerfil';
 
 
 WebFont.load({
@@ -50,9 +48,7 @@ const App = () => {
         </Routes>
       </ContenedorMain>
       
-      {location.pathname !== '/login' &&
-			  <Footer />
-      }
+      { location.pathname !== '/login' && <Footer /> }
     </>
   )
 }

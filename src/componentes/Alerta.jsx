@@ -1,4 +1,3 @@
-import React from 'react';
 
 const Alerta = ({value,type}) => {
   return (
