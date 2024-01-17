@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import ContenedorRedesSocialesPerfil from '../elementos/header/ContenedorRedesSocialesPerfil';
 import  Markdown  from  'react-markdown';
@@ -7,11 +7,20 @@ import rehypeRaw from 'rehype-raw';
 
 
 const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMultimedia,figma,github,linkedin,demoLive}) => {
-  const [scrollAnimate, setScrollAnimate] = useState(true);
+  const [scrollAnimate, setScrollAnimate] = useState(false);
 
-  setTimeout(() => {
-    setScrollAnimate(false);
-  }, 3515);
+  
+  useEffect(()=>{
+    if(Boolean(localStorage.getItem('scrollPrimeraVezInfProyecto')) === true){
+      setScrollAnimate(false);
+    } else {
+      setScrollAnimate(true);
+      setTimeout(() => {
+        setScrollAnimate(false);
+        localStorage.setItem('scrollPrimeraVezInfProyecto', true);
+      }, 3515);
+    }
+  },[scrollAnimate,localStorage])
 
   return (
     <div onClick={(e)=> e.target.id === 'fondoBloqueo' &&  setMostratVentana(false)} id='fondoBloqueo' className='fixed backdrop-blur-sm z-10 top-0 left-0 bg-[#f3f6f80c] w-full h-screen flex justify-center md:items-center'>
