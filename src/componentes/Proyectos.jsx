@@ -86,7 +86,7 @@ const Proyectos = () => {
             />
           </>
       ))
-      }
+      }git a
 
   	</div>
   );
