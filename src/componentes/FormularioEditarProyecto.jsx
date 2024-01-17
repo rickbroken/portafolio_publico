@@ -5,6 +5,12 @@ import editarProyecto from '../firebase/editarProyecto';
 import InputFile from './InputFile';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage } from '../firebase/firebaseConfig';
+import AceEditor from "react-ace";
+import "ace-builds/src-noconflict/ext-language_tools";
+import 'ace-builds/src-noconflict/theme-one_dark';
+import 'ace-builds/src-noconflict/mode-markdown';
+
+
 
 const FormularioEditarProyecto = ({setFormularioEditarProyecto,titulo,descripcion,caracteristicas,github,figma,linkedin,demoLive,idDoc}) => {
   const [publicando, setPublicando] = useState(false);
@@ -69,6 +75,11 @@ const FormularioEditarProyecto = ({setFormularioEditarProyecto,titulo,descripcio
     setPublicando(false);
   }
 
+  const onChange = (newValue) => {
+    setDescripcionNueva(newValue);
+  }
+
+
   return (
     <div className='flex justify-center fixed left-0 top-0 w-full h-screen backdrop-blur-sm bg-[#00000031] z-10'>
       <div className='bg-[rgb(37,37,37)] max-w-3xl w-full rounded-2xl relative z-20 flex flex-col items-center overflow-scroll overflow-y-auto overflow-x-auto my-10 max-h-[820px]'>
@@ -85,7 +96,28 @@ const FormularioEditarProyecto = ({setFormularioEditarProyecto,titulo,descripcio
 
           <div className='w-full my-3'>
             <p className='font-[200]'>Descripcion del proyecto:</p>
-            <textarea className='w-full py-2 pl-4 outline-none font-[200] min-h-[160px] max-h-52' type="text" value={descripcionNueva} onChange={(e)=>setDescripcionNueva(e.target.value)}></textarea>
+            <AceEditor
+              mode="markdown"
+              theme="one_dark"
+              onChange={(onChange)}
+              name="UNIQUE_ID_OF_DIV"
+              editorProps={{ $blockScrolling: true }}
+              defaultValue={descripcion}
+              showPrintMargin={false}
+              width='100%'
+              height='180px'
+              setOptions={{
+                useWorker: false,
+                tabSize: 2,
+                wrap: true,
+                animatedScroll: true,
+                cursorStyle: 'slim',
+                enableLiveAutocompletion: true,
+                enableBasicAutocompletion: true,
+                useSoftTabs: true,
+                fontSize: 16,
+              }}
+            />
           </div>
 
           <div className='w-full my-3'>

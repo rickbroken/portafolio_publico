@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@formspree/react": "2.5.1",
+    "ace-builds": "^1.32.3",
     "aos": "2.3.4",
     "clipboard-copy": "^4.0.1",
     "date-fns": "2.30.0",
@@ -18,6 +19,7 @@
     "localforage": "1.10.0",
     "match-sorter": "6.3.1",
     "react": "^18.2.0",
+    "react-ace": "^10.1.0",
     "react-dom": "18.2.0",
     "react-google-recaptcha-v3": "^1.10.1",
     "react-helmet": "6.1.0",
