@@ -1,5 +1,6 @@
 import { Icon } from '@iconify/react';
 import React from 'react';
+import uploadingLoop from '@iconify/icons-line-md/uploading-loop';
 
 const AgregarProyecto = ({setFormularioAgregarProyecto}) => {
   return (
@@ -7,7 +8,7 @@ const AgregarProyecto = ({setFormularioAgregarProyecto}) => {
       onClick={()=>setFormularioAgregarProyecto(true)}
     >
       <p className='text-3xl font-[300]'>Agregar</p>
-      <Icon className='cursor-pointer' icon='mingcute:add-line' width='80' color='white' />
+      <Icon icon={uploadingLoop} width='80' color='white' />
     </div>
   );
 }

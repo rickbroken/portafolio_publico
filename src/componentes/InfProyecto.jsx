@@ -4,6 +4,8 @@ import ContenedorRedesSocialesPerfil from '../elementos/header/ContenedorRedesSo
 import  Markdown  from  'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import moonAltToSunnyOutlineLoopTransition from '@iconify/icons-line-md/moon-alt-to-sunny-outline-loop-transition';
+import closeIcon from '@iconify/icons-line-md/close';
 
 
 const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMultimedia,figma,github,linkedin,demoLive}) => {
@@ -42,7 +44,7 @@ const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMu
         }
 
         <div className='absolute top-4 right-4 cursor-pointer'>
-          <Icon onClick={()=>closeWindow()} icon="akar-icons:cross" color="white" width="30" />
+          <Icon onClick={()=>closeWindow()} icon={closeIcon} color="white" width="30" />
         </div>
 
         <div className='mx-auto text-xl sm:text-2xl md:pt-3 pt-12 pb-3'>
@@ -122,7 +124,10 @@ const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMu
 
         <div className='flex w-11/12 mx-auto justify-center items-center flex-wrap py-2 pb-4 md:pb-2'>
           <a href={demoLive} target='_blank' className={`${welcome.pasoDos && 'z-30 shadow-xl shadow-[#ffffff21]'} w-4/12 md:mb-0 mb-4`}>
-            <button className='bg-[#1e9480]  py-2 w-full rounded-md'>Visitar Proyecto</button>
+            <button className='flex justify-center gap-2 bg-[#1e9480] py-2 w-full rounded-md'>
+              <Icon width={25} icon={moonAltToSunnyOutlineLoopTransition} />
+              Visitar Proyecto
+            </button>
           </a>
           <div className={`${welcome.pasoTres && 'z-30 shadow-xl'} flex mx-4 flex-wrap justify-center`}>
             <p className='md:mx-0 md:mr-3 mx-4'>Poyecto subido en:</p>

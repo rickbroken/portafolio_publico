@@ -10,6 +10,7 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/ext-language_tools";
 import 'ace-builds/src-noconflict/theme-one_dark';
 import 'ace-builds/src-noconflict/mode-markdown';
+import loadingTwotoneLoop from '@iconify/icons-line-md/loading-twotone-loop';
 
 const NuevaPublicacion = () => {
   const {usuario} = useAuth();
@@ -145,7 +146,7 @@ const NuevaPublicacion = () => {
 
 				<button disabled={publicando}  onClick={handleSubmit} className={`${publicando ? 'bg-[#20b47b67] hover:none active:none' : 'bg-[#20b47b] hover:bg-[#1ca06d] active:bg-[#207044]'}  w-40 h-10 rounded-md flex justify-center items-center`}>
 					
-					{publicando ? <Icon icon="line-md:loading-loop" color="white" width='28' className='mr-1'/> : <><Icon icon="mingcute:send-fill" width='22' className='mr-1'/>Publicar</>}
+					{publicando ? <Icon icon={loadingTwotoneLoop} color="white" width='28' className='mr-1'/> : <><Icon icon="mingcute:send-fill" width='22' className='mr-1'/>Publicar</>}
 				</button>
 			</div>
 

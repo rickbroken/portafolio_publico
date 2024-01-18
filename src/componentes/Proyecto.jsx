@@ -7,6 +7,7 @@ import eliminarProyecto from './../firebase/eliminarProyecto';
 import { useAuth } from '../contextos/useAuth';
 import {copiarEnlaceProyecto} from '../funciones/copiarEnlaceProyecto';
 import Markdown from 'react-markdown';
+import arrowsDiagonal from '@iconify/icons-line-md/arrows-diagonal';
 
 
 const Proyecto = ({titulo,descripcion,caracteristicas,figma,linkedin,github,demoLive,idDoc,urlMultimediaPrev,urlMultimedia}) => {
@@ -87,7 +88,10 @@ const Proyecto = ({titulo,descripcion,caracteristicas,figma,linkedin,github,demo
           </Markdown>
         </span>
       <div className='flex w-11/12 mx-auto justify-between py-2 pb-4'>
-        <button onClick={()=>setMostratVentana(true)} className='bg-[#1e6994] w-7/12 py-2 mx-2 rounded-md'>Ver Mas</button>
+        <button onClick={()=>setMostratVentana(true)} className='flex justify-center items-center gap-1 bg-[#1e6994] w-7/12 py-2 mx-2 rounded-md'>
+          <Icon width={20} color='white' icon={arrowsDiagonal} />
+          Ver Mas
+        </button>
         {github !== '' &&
           <ContenedorRedesSocialesPerfil 
             icon='skill-icons:github-dark'
