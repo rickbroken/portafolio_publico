@@ -6,6 +6,10 @@ import agregarPublicacion from '../firebase/agregarPublicacion';
 import { useAuth } from '../contextos/useAuth';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage } from '../firebase/firebaseConfig';
+import AceEditor from "react-ace";
+import "ace-builds/src-noconflict/ext-language_tools";
+import 'ace-builds/src-noconflict/theme-one_dark';
+import 'ace-builds/src-noconflict/mode-markdown';
 
 const NuevaPublicacion = () => {
   const {usuario} = useAuth();
@@ -73,9 +77,12 @@ const NuevaPublicacion = () => {
 		}
 	}
 
+  const onChange = (newValue) => {
+    setTextoPublicacion(newValue);
+  }
 
   return (
-		<div className='cont-nueva-publicacion w-full flex flex-col items-start bg-[#0000008f] rounded-xl'>
+		<div className='cont-nueva-publicacion px-4 w-full flex flex-col items-start bg-[#0000008f] rounded-xl'>
 			{mostrarAlerta &&
 				<Alerta 
 					value={valueAlerta}
@@ -83,9 +90,27 @@ const NuevaPublicacion = () => {
 				/>
 			}
 			<p className='font-primaria font-[400] text-neutral-300 px-5 py-2'>Nueva Publicacion:</p>
+        <AceEditor
+          mode="markdown"
+          theme="one_dark"
+          onChange={onChange}
+          name="UNIQUE_ID_OF_DIV"
+          editorProps={{ $blockScrolling: true }}
+          defaultValue={textoPublicacion}
+          showPrintMargin={false}
+          width='100%'
+          height='180px'
+          setOptions={{
+            useWorker: false,
+            tabSize: 2,
+            wrap: true,
+            animatedScroll: true,
+            cursorStyle: 'slim',
+            useSoftTabs: true,
+            fontSize: 16,
+          }}
+        />
 
-			<textarea onChange={(e)=>setTextoPublicacion(e.target.value)} className='font-primaria font-[200] tracking-wider mx-auto w-[95%] px-2 py-1 rounded-md min-h-[100px] max-h-[200px] outline-none' placeholder='Escribe el contenido de tu post...' value={textoPublicacion}></textarea>
-			
 			<div className='flex justify-between items-center w-full sm:px-5 px-3 py-3'>
 				<div className='flex flex-wrap items-center'>
           <div className="relative overflow-hidden mr-2">

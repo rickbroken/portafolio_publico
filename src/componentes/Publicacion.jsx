@@ -9,6 +9,13 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage } from '../firebase/firebaseConfig';
 import { useAuth } from '../contextos/useAuth';
 import { copiarEnlacePublicacion } from '../funciones/copiarEnlacePublicacion';
+import Markdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
+import AceEditor from "react-ace";
+import "ace-builds/src-noconflict/ext-language_tools";
+import 'ace-builds/src-noconflict/theme-one_dark';
+import 'ace-builds/src-noconflict/mode-markdown';
 
 
 const Publicacion = ({texto,fecha,id,editado,publicaciones,idUsuario,urlMultimedia,tipoMultimedia,formatoMovil,ImagenPerfil,nameMuntimedia}) => {
@@ -78,20 +85,13 @@ const Publicacion = ({texto,fecha,id,editado,publicaciones,idUsuario,urlMultimed
     setEditando(false);
   }
   
+  const onChange = (newValue) => {
+    setNuevoTexto(newValue);
+  }
 
   return ( 
 		<article id={id} className={`${formatoMovil ? 'sm:w-6/12' : 'sm:w-full'} mx-auto sm:my-8 my-2 mb-20 rounded-xl font-primaria relative bg-[#131313]`}>
 			<Icon onClick={()=>setMenuPublicacion(!menuPublicacion)} className='absolute right-5 top-4 cursor-pointer select-none active:select-none focus:select-none' width='30' color='#b8b8b8' icon="solar:menu-dots-bold" />
-      {editando &&
-        <>
-        <button disabled={publicando}  onClick={handleActualizar} className={`${publicando ? 'bg-[#20b47b67] hover:none active:none' : 'bg-[#399974] hover:bg-[#357c61] active:bg-[#207044]'}  w-28 h-9 text-sm rounded-md my-6 flex justify-center items-center absolute right-56 top-0`}>
-          {publicando ? <Icon icon="line-md:loading-loop" color="white" width='28' className='mr-1'/> : <>Guardar</>}
-        </button>
-        <button disabled={publicando} onClick={()=>setEditando(false)} className={'bg-[#b1343e] hover:bg-[#943a42] active:bg-[#742f34] w-28 h-9 text-sm rounded-md my-6 flex justify-center items-center absolute right-24 top-0'}>
-          Cancelar
-        </button>
-        </>
-      }
       {menuPublicacion &&
         <div className='bg-[#413f3f] absolute right-6 top-11 rounded-sm z-10'>
           {usuario !== null && !editando &&
@@ -132,9 +132,45 @@ const Publicacion = ({texto,fecha,id,editado,publicaciones,idUsuario,urlMultimed
 
 			<div className='w-11/12 mx-auto'>
         {editando ?
-          <textarea type="text" className='w-full max-h-[150px] min-h-[40px] rounded-sm py-2 px-4 font-[200] outline-none my-1' value={nuevoTexto} onChange={(e)=>setNuevoTexto(e.target.value)}></textarea>
+          <AceEditor
+            mode="markdown"
+            theme="one_dark"
+            onChange={onChange}
+            name="UNIQUE_ID_OF_DIV"
+            editorProps={{ $blockScrolling: true }}
+            defaultValue={texto}
+            showPrintMargin={false}
+            width='100%'
+            height='20vh'
+            setOptions={{
+              useWorker: false,
+              tabSize: 2,
+              wrap: true,
+              animatedScroll: true,
+              cursorStyle: 'slim',
+              useSoftTabs: true,
+              fontSize: 16,
+            }}
+          />
           :
-          <p className='font-[200] my-1 break-words' alt={texto} dangerouslySetInnerHTML={{ __html: texto }}/>
+          <Markdown className="overflow-ellipsis font-[200]" rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}>{texto}</Markdown>
+        }
+        {editando &&
+          <div className='flex gap-4'>
+            <button disabled={publicando}  onClick={handleActualizar} className={`${publicando ? 'bg-[#20b47b67] hover:none active:none' : 'bg-[#399974] hover:bg-[#357c61] active:bg-[#207044]'}  py-1 px-2 font-[200] text-sm rounded my-2 flex justify-center items-center gap-1`}>
+              {publicando ? <Icon icon="line-md:loading-loop" color="white" width='28' className='mr-1'/> 
+              :
+              <>
+                <Icon icon="mingcute:send-fill" />
+                Guardar
+              </>
+              }
+            </button>
+            <button disabled={publicando} onClick={()=>setEditando(false)} className={'bg-[#b1343e] hover:bg-[#943a42] active:bg-[#742f34] py-1 px-2 font-[200] text-sm rounded my-2 flex justify-center items-center gap-1'}>
+              <Icon icon="line-md:cancel" />
+              Cancelar
+            </button>
+          </div>
         }
 			</div>
 
