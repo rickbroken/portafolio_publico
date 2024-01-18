@@ -95,7 +95,7 @@ const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMu
             }
 
             
-            <div className={`${welcome.pasoUno && 'z-30 shadow-xl shadow-[#ffffff21] '} bg-[#1d1d1d] relative max-h-[160px] bg-transparent overflow-ellipsis tracking-wide font-[200] text-sm apply-none overflow-y-auto rounded`}>
+            <div className={`${welcome.pasoUno && 'z-30 shadow-xl shadow-[#ffffff21] '} bg-[#1d1d1d] relative max-h-[155px] bg-transparent overflow-ellipsis tracking-wide font-[200] text-sm apply-none overflow-y-auto rounded`}>
               <Icon 
                 className={`${welcome.pasoUno ? 'animate-bounce ' : 'hidden'} absolute right-6 z-40 top-16`} 
                 icon="ic:round-swipe-up" 
