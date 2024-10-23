@@ -14,7 +14,7 @@ const agregarPublicacion = async(textoPublicacion,url,tipoMultimedia,formatoMovi
     urlMultimedia: url,
     tipoMultimedia: tipoMultimedia,
     formatoMovil: formatoMovil,
-    nameMuntimedia:nameMuntimedia,
+    nameMuntimedia:nameMuntimedia ?? '',
     editado: false
   });
 
