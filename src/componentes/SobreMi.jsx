@@ -20,6 +20,7 @@ import BtnAgregarFrontend from '../elementos/sobreMi/botones/BtnAgregarFrontend'
 import BtnAgregarHerramientas from '../elementos/sobreMi/botones/BtnAgregarHerramientas';
 import BtnAgregarBackend from '../elementos/sobreMi/botones/BtnAgregarBackend';
 import FormularioTest from './FormularioTest';
+import { comparar_arreglos_de_objetos } from '../funciones/compararArreglos';
 
 const SobreMi = () => {
   const [agregandoHerramienta, setAgregandoHerramienta] = useState(false);
@@ -44,13 +45,35 @@ const SobreMi = () => {
   const [herramientas, setHerramientas] = useState([]);
   const [frontend, setFrontend] = useState([]);
   const [backend, setBackend] = useState([]);
+  const [backendCopy, setBackendCopy] = useState([]);
+  const [herramientasCopy, setHerramientasCopy] = useState([]);
+  const [frontendCopy, setFrontendCopy] = useState([]);
 
   useEffect(()=>{
+    // Si el perfil no esta vacio, seteamos los estados con los datos del perfil de herramientas, frontend y backend
     setHerramientas(perfil[0]?.herramientas);
     setFrontend(perfil[0]?.frontend);
     setBackend(perfil[0]?.backend);
+    // Creamos una copia para comparar si se han hecho cambios y mostrar el boton de guardar dependiendo de eso
+    setBackendCopy(perfil[0]?.backend);
+    setHerramientasCopy(perfil[0]?.herramientas);
+    setFrontendCopy(perfil[0]?.frontend);
   },[perfil])
- 
+
+  /**
+   * useEffect para comparar si se han hecho cambios en los arreglos de herramientas, frontend y backend
+   */
+  useEffect(()=>{
+    if(comparar_arreglos_de_objetos(backend,backendCopy)){
+      setCambioBackend(false);
+    }
+    if(comparar_arreglos_de_objetos(herramientas,herramientasCopy)){
+      setCambioHerramientas(false);
+    }
+    if(comparar_arreglos_de_objetos(frontend,frontendCopy)){
+      setCambioFrontend(false);
+    }
+  },[backend,herramientas,frontend]);
 
   return ( 
   	<>
