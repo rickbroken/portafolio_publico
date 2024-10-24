@@ -63,7 +63,7 @@ const NuevaPublicacion = () => {
       }
 
       //Reseteamos el loading y campos de texto
-      setTextoPublicacion('');
+      setTextoPublicacion(' ');
       setFormatoMovil(false);
       setPublicando(false);
       setFileImagen();
