@@ -26,7 +26,12 @@ const Publicacion = ({texto,fecha,id,editado,publicaciones,idUsuario,urlMultimed
   const {interacciones} = useObtenerInteraccion();
 
   const [megusta, setMegusta] = useState();
+  const [megusta_activo, setMegusta_activo] = useState();
   const [mencanta, setMencanta] = useState();
+  const [mencanta_activo, setMencanta_activo] = useState();
+
+  const local_reaccion_mencanta = localStorage.getItem('reaccion'+'mencanta'+id);
+  const local_reaccion_megusta = localStorage.getItem('reaccion'+'megusta'+id);
 
 
   useEffect(() => {
@@ -90,7 +95,7 @@ const Publicacion = ({texto,fecha,id,editado,publicaciones,idUsuario,urlMultimed
   }
 
   return ( 
-		<article id={id} className={`${formatoMovil ? 'sm:w-6/12' : 'sm:w-full'} mx-auto sm:my-8 my-2 mb-20 rounded-xl font-primaria relative bg-[#131313]`}>
+		<article id={id} className={`${formatoMovil ? 'sm:w-6/12' : 'sm:w-full'} mx-auto sm:my-8 my-2 mb-20 rounded-xl font-primaria relative bg-[#05081a] border border-[#313131] shadow-lg shadow-[#181818]`}>
 			<Icon onClick={()=>setMenuPublicacion(!menuPublicacion)} className='absolute right-5 top-4 cursor-pointer select-none active:select-none focus:select-none' width='30' color='#b8b8b8' icon="solar:menu-dots-bold" />
       {menuPublicacion &&
         <div className='bg-[#413f3f] absolute right-6 top-11 rounded-sm z-10'>
@@ -218,7 +223,7 @@ const Publicacion = ({texto,fecha,id,editado,publicaciones,idUsuario,urlMultimed
 
 			<div className='flex items-center w-full py-2'>
         <Interactuar 
-          icon='icon-park-outline:like'
+          icon={local_reaccion_mencanta ? 'icon-park-solid:like' : 'icon-park-outline:like'}
           cantidad={mencanta}
           mencanta={mencanta}
           id={id}
@@ -227,7 +232,7 @@ const Publicacion = ({texto,fecha,id,editado,publicaciones,idUsuario,urlMultimed
           idUsuario={idUsuario}
         />
         <Interactuar 
-          icon='ant-design:like-twotone'
+          icon={local_reaccion_megusta ? 'ant-design:like-fill' : 'ant-design:like-twotone'}
           cantidad={megusta}
           megusta={megusta}
           id={id}

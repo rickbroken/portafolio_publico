@@ -1,7 +1,6 @@
 import { Icon } from '@iconify/react';
 import React, { useEffect, useState } from 'react';
 import agredarInteraccion from '../firebase/agregarInteraccion';
-import useObtenerInteraccion from '../hooks/useObtenerInteraccion';
 
 const Interactuar = ({icon,cantidad,id,tipo,publicaciones,mencanta,megusta}) => {
   const [interaccionLocalStorage, setInteracionLocalStorage] = useState(false);
@@ -11,7 +10,7 @@ const Interactuar = ({icon,cantidad,id,tipo,publicaciones,mencanta,megusta}) => 
     reaccion ? setInteracionLocalStorage(true) : setInteracionLocalStorage(false);
   },[publicaciones])
 
-  const interactuar = async() => {
+  const handle_click = async() => {
     if(!interaccionLocalStorage){
       setInteracionLocalStorage(true);
       localStorage.setItem('reaccion'+tipo+id, 'true');
@@ -26,8 +25,8 @@ const Interactuar = ({icon,cantidad,id,tipo,publicaciones,mencanta,megusta}) => 
   return (
     <div className='flex justify-center items-center mx-3'>
 			<Icon
-        onClick={()=>{interactuar()}} className={!interaccionLocalStorage && 'cursor-pointer select-none'} 
-        color={interaccionLocalStorage ? '#9b9b9b' : '#fff'} 
+        onClick={()=>{handle_click()}} className={!interaccionLocalStorage && 'cursor-pointer select-none'} 
+        color={'#fff'} 
         width='23' 
         icon={icon}
       />
