@@ -18,7 +18,7 @@ const Proyecto = ({titulo,descripcion,caracteristicas,figma,linkedin,github,demo
 
 
   return (
-    <div className='w-[370px] h-[350px] mb-10 bg-[#0c0c0c] rounded-2xl overflow-hidden relative flex flex-col justify-between'>
+    <div className='w-[370px] h-[350px] mb-10 bg-[#151b23] rounded-2xl overflow-hidden relative flex flex-col justify-between'>
       {mostrartVentana &&
         <InfProyecto
           setMostratVentana= {setMostratVentana}

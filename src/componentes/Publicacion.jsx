@@ -95,7 +95,7 @@ const Publicacion = ({texto,fecha,id,editado,publicaciones,idUsuario,urlMultimed
   }
 
   return ( 
-		<article id={id} className={`${formatoMovil ? 'sm:w-6/12' : 'sm:w-full'} mx-auto sm:my-8 my-2 mb-20 rounded-xl font-primaria relative bg-[#05081a] border border-[#313131] shadow-lg shadow-[#181818]`}>
+		<article id={id} className={`${formatoMovil ? 'sm:w-6/12' : 'sm:w-full'} mx-auto sm:my-8 my-2 mb-20 rounded-xl font-primaria relative bg-[#151b23]`}>
 			<Icon onClick={()=>setMenuPublicacion(!menuPublicacion)} className='absolute right-5 top-4 cursor-pointer select-none active:select-none focus:select-none' width='30' color='#b8b8b8' icon="solar:menu-dots-bold" />
       {menuPublicacion &&
         <div className='bg-[#413f3f] absolute right-6 top-11 rounded-sm z-10'>

@@ -38,7 +38,7 @@ const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMu
 
   return (
     <div onClick={(e)=> e.target.id === 'fondoBloqueo' &&  closeWindow()} id='fondoBloqueo' className='fixed backdrop-blur-sm z-10 top-0 left-0 bg-[#f3f6f80c] w-full h-screen flex justify-center md:items-center'>
-      <div className='bg-[#1d1d1d] mx-4 md:mx-0 max-w-4xl rounded-2xl relative z-20 flex flex-col items-center overflow-scroll overflow-y-auto overflow-x-auto sm:my-0  my-10 sm:mt-0 md:h-[600px] justify-between'>
+      <div className='bg-[#151b23] mx-4 md:mx-0 max-w-4xl rounded-2xl relative z-20 flex flex-col items-center overflow-scroll overflow-y-auto overflow-x-auto sm:my-0  my-10 sm:mt-0 md:h-[600px] justify-between'>
         {welcome.pasoUno || welcome.pasoDos || welcome.pasoTres && true ?
           <div className='fixed left-0 top-0 w-full h-screen bg-[#0e3747a8] z-30'></div> : false
         }
@@ -104,7 +104,7 @@ const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMu
                 width={60} 
                 color='#ffffffe1'/>
               
-              <Markdown className="overflow-ellipsis bg-[#1d1d1d] px-4 pt-2" rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}>{descripcion}</Markdown>
+              <Markdown className="overflow-ellipsis bg-[#151b23] px-4 pt-2" rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}>{descripcion}</Markdown>
             </div>
 
             <div className='flex max-w-full min-w-full max-h-[300px] min-h-[250px] my-4 justify-center items-center rounded-md overflow-hidden'>
