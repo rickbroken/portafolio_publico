@@ -1,6 +1,9 @@
+import { getTime } from "date-fns";
+
 export const handleSubmitContacto = async (event,limpiarFormulario,setStatus) => {
   event.preventDefault();
   const formData = new FormData(event.target);
+  const fechaActual = getTime(new Date());
 
   try {
     const response = await fetch('https://formspree.io/f/mqkvrkvk', {
@@ -12,9 +15,7 @@ export const handleSubmitContacto = async (event,limpiarFormulario,setStatus) =>
     });
     
     if (response.ok) {
-      
       localStorage.setItem('formularioEnviado', true);
-      const fechaActual = getTime(new Date());
       localStorage.setItem('fechaEnvio', fechaActual);
       event.target.reset();
       limpiarFormulario();

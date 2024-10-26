@@ -39,6 +39,7 @@ const ValidacionFormulario = () => {
         data-aos-duration='2000' 
         onSubmit={(e)=>handleSubmitContacto(e,limpiarFormulario,setStatus)}>
       <p className='mt-6'>Contactame:</p>
+
       <ContInputFormulario 
         name="name"
         type="text"
@@ -77,7 +78,10 @@ const ValidacionFormulario = () => {
         value={message}
       />
 
-      <div required className="g-recaptcha" data-sitekey={import.meta.env.VITE_API_KEY_SITE_CAPTCHA}></div>
+      {status !== 200 &&
+        <div required className="g-recaptcha" data-sitekey={import.meta.env.VITE_API_KEY_SITE_CAPTCHA}></div>
+      }
+
 
       <button
         className='bg-[#20b47b] hover:bg-[#1ca06d] active:bg-[#207044] w-40 h-10 rounded-md mx-2 my-4 flex justify-center items-center cursor-pointer'

@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import '../index.css'
 import Alerta from './Alerta';
 import agregarPublicacion from '../firebase/agregarPublicacion';
@@ -15,6 +15,7 @@ import loadingTwotoneLoop from '@iconify/icons-line-md/loading-twotone-loop';
 const NuevaPublicacion = () => {
   const {usuario} = useAuth();
   
+  const editorRef = useRef(null);
 	const [textoPublicacion, setTextoPublicacion] = useState('');
   const [publicando, setPublicando] = useState(false);
 
@@ -28,7 +29,13 @@ const NuevaPublicacion = () => {
 
   const [fileImagen, setFileImagen] = useState();
   let urlMultimedia = '';
-  let nameMultimedia= '';
+  let nameMultimedia = '';
+
+  const reset_editor = () => {
+    if (editorRef.current) {
+      editorRef.current.editor.setValue("");  // Resetear el valor del editor
+    }
+  };
 
   const handleFile = (e) => {
     setFileImagen(e.target.files[0]);
