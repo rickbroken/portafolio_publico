@@ -27,7 +27,7 @@ const Interactuar = ({icon,cantidad,id,tipo,publicaciones,mencanta,megusta}) => 
 			<Icon
         onClick={()=>{handle_click()}} className={!interaccionLocalStorage && 'cursor-pointer select-none'} 
         color={'#fff'} 
-        width='23' 
+        width='23'
         icon={icon}
       />
 			<p className='text-lg ml-1 font-[100]'>{cantidad}</p>

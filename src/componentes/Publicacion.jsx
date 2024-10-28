@@ -16,6 +16,7 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/ext-language_tools";
 import 'ace-builds/src-noconflict/theme-one_dark';
 import 'ace-builds/src-noconflict/mode-markdown';
+import Swal from 'sweetalert2';
 
 
 const Publicacion = ({texto,fecha,id,editado,publicaciones,idUsuario,urlMultimedia,tipoMultimedia,formatoMovil,ImagenPerfil,nameMuntimedia}) => {
@@ -92,6 +93,27 @@ const Publicacion = ({texto,fecha,id,editado,publicaciones,idUsuario,urlMultimed
   
   const onChange = (newValue) => {
     setNuevoTexto(newValue);
+  }
+
+  const compartirPublicacion = () => {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "bottom-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+
+    Toast.fire({
+      icon: "success",
+      title: "Url de la publicacion copiada correctamente",
+    });
+    
+    copiarEnlacePublicacion(id);
   }
 
   return ( 
@@ -221,25 +243,38 @@ const Publicacion = ({texto,fecha,id,editado,publicaciones,idUsuario,urlMultimed
         }
 			</div>
 
-			<div className='flex items-center w-full py-2'>
-        <Interactuar 
-          icon={local_reaccion_mencanta ? 'icon-park-solid:like' : 'icon-park-outline:like'}
-          cantidad={mencanta}
-          mencanta={mencanta}
-          id={id}
-          tipo='mencanta'
-          publicaciones={publicaciones}
-          idUsuario={idUsuario}
-        />
-        <Interactuar 
-          icon={local_reaccion_megusta ? 'ant-design:like-fill' : 'ant-design:like-twotone'}
-          cantidad={megusta}
-          megusta={megusta}
-          id={id}
-          tipo='megusta'
-          publicaciones={publicaciones}
-          idUsuario={idUsuario}
-        />
+			<div className='flex items-center justify-between w-full py-2'>
+        <div className='flex'>
+          <Interactuar 
+            icon={local_reaccion_mencanta ? 'icon-park-solid:like' : 'icon-park-outline:like'}
+            cantidad={mencanta}
+            mencanta={mencanta}
+            id={id}
+            tipo='mencanta'
+            publicaciones={publicaciones}
+            idUsuario={idUsuario}
+          />
+          <Interactuar 
+            icon={local_reaccion_megusta ? 'ant-design:like-fill' : 'ant-design:like-twotone'}
+            cantidad={megusta}
+            megusta={megusta}
+            id={id}
+            tipo='megusta'
+            publicaciones={publicaciones}
+            idUsuario={idUsuario}
+          />
+        </div>
+
+        <div className='px-4'>
+          <Icon 
+            className='cursor-pointer' 
+            icon="fluent:share-28-regular" 
+            color={'#fff'} 
+            width='23'
+            onClick={compartirPublicacion}
+          />
+        </div>
+
 			</div>
 		</article>
 	);
