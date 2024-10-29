@@ -21,6 +21,7 @@ const Proyecto = ({titulo,descripcion,caracteristicas,figma,linkedin,github,demo
     <div className='w-[370px] h-[350px] mb-10 bg-[#151b23] rounded-2xl overflow-hidden relative flex flex-col justify-between'>
       {mostrartVentana &&
         <InfProyecto
+          idDoc={idDoc}
           setMostratVentana= {setMostratVentana}
           titulo={titulo}
           descripcion={descripcion}

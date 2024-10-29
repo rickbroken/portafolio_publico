@@ -1,34 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import ContenedorRedesSocialesPerfil from '../elementos/header/ContenedorRedesSocialesPerfil';
-import  Markdown  from  'react-markdown';
+import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import moonAltToSunnyOutlineLoopTransition from '@iconify/icons-line-md/moon-alt-to-sunny-outline-loop-transition';
 import closeIcon from '@iconify/icons-line-md/close';
+import { alert_success } from '../funciones/alerts';
+import { copiarEnlaceProyecto } from '../funciones/copiarEnlaceProyecto';
 
 
-const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMultimedia,figma,github,linkedin,demoLive}) => {
+const InfProyecto = ({ idDoc, setMostratVentana, titulo, descripcion, caracteristicas, urlMultimedia, figma, github, linkedin, demoLive }) => {
   const [welcome, setWelcome] = useState({
     pasoUno: false,
     pasoDos: false,
     pasoTres: false
   });
-  
+  const [mostrarIcono, setMostrarIcono] = useState(true);
+  const [enlaceCopiado, setEnlaceCopiado] = useState(false);
+
   const body = document.body;
   body.style.overflowY = 'hidden';
 
 
-  useEffect(()=>{
-    if(Boolean(localStorage.getItem('welcomeProyecto')) !== true){
-      setWelcome({pasoUno: true});
+  useEffect(() => {
+    if (Boolean(localStorage.getItem('welcomeProyecto')) !== true) {
+      setWelcome({ pasoUno: true });
       return;
     }
-  },[])
+  }, [])
 
   const welcomeEnd = () => {
     localStorage.setItem('welcomeProyecto', true);
-    setWelcome({pasoTres: false});
+    setWelcome({ pasoTres: false });
   }
 
   const closeWindow = () => {
@@ -36,15 +40,34 @@ const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMu
     body.style.overflowY = 'visible';
   }
 
+  const compartirProyecto = () => {
+    // Se copia el enlace al portapapeles y se renderiza nuevamente el ícono
+    setEnlaceCopiado(true);
+    setMostrarIcono(false);
+
+    alert_success('Enlace copiado');
+
+    // Re-muestra el ícono después de un breve retardo
+    setTimeout(() => {
+      setMostrarIcono(true);
+    }, 50); // Breve intervalo para forzar el re-render
+
+    copiarEnlaceProyecto(idDoc);
+
+    setTimeout(() => {
+      setEnlaceCopiado(false);
+    }, 4000);
+  }
+
   return (
-    <div onClick={(e)=> e.target.id === 'fondoBloqueo' &&  closeWindow()} id='fondoBloqueo' className='fixed backdrop-blur-sm z-10 top-0 left-0 bg-[#f3f6f80c] w-full h-screen flex justify-center md:items-center'>
+    <div onClick={(e) => e.target.id === 'fondoBloqueo' && closeWindow()} id='fondoBloqueo' className='fixed backdrop-blur-sm z-10 top-0 left-0 bg-[#f3f6f80c] w-full h-screen flex justify-center md:items-center'>
       <div className='bg-[#151b23] mx-4 md:mx-0 max-w-4xl rounded-2xl relative z-20 flex flex-col items-center overflow-scroll overflow-y-auto overflow-x-auto sm:my-0  my-10 sm:mt-0 md:h-[600px] justify-between'>
         {welcome.pasoUno || welcome.pasoDos || welcome.pasoTres && true ?
           <div className='fixed left-0 top-0 w-full h-screen bg-[#0e3747a8] z-30'></div> : false
         }
 
         <div className='absolute top-4 right-4 cursor-pointer'>
-          <Icon onClick={()=>closeWindow()} icon={closeIcon} color="white" width="30" />
+          <Icon onClick={() => closeWindow()} icon={closeIcon} color="white" width="30" />
         </div>
 
         <div className='mx-auto text-xl sm:text-2xl md:pt-3 pt-12 pb-3'>
@@ -59,51 +82,51 @@ const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMu
                 <p className='text-black font-[800] pt-2'>1/3</p>
                 <p className='text-black py-1 text-center px-4 font-[400]'>Puedes hacer scroll y leer el README.md del proyecto ;)</p>
                 <div>
-                  <button 
+                  <button
                     className='text-black text-sm px-2 font-[200]'
-                    onClick={()=>welcomeEnd()}
+                    onClick={() => welcomeEnd()}
                   >
                     Omitir - </button>
-                  <button 
+                  <button
                     className='text-white bg-green-700 mt-2 py-1 px-6 rounded-full mb-1'
-                    onClick={()=>setWelcome({pasoUno: false, pasoDos: true})}  
+                    onClick={() => setWelcome({ pasoUno: false, pasoDos: true })}
                   >
                     Siguiente
                   </button>
                 </div>
               </div>
-            : welcome.pasoDos ?
-              <div className='absolute flex flex-col items-center z-40 left-16 bottom-16 md:left-24 w-56 rounded-md bg-white'>
-                <p className='text-black font-[800] pt-2'>2/3</p>
-                <p className='text-black py-1 text-center px-4 font-[400]'>{`Puedes visitar la Demostracion <3`}</p>
-                <button 
-                  className='text-white bg-green-700 py-2 px-6 rounded-full mb-1'
-                  onClick={()=>setWelcome({pasoDos: false, pasoTres: true})}  
-                >
-                  Siguiente
-                </button>
-              </div>
-            : welcome.pasoTres &&
-              <div className='absolute flex flex-col items-center z-40 right-14 bottom-4 md:bottom-16 md:right-32 w-56 rounded-md bg-white'>
-                <p className='text-black font-[800] pt-2'>3/3</p>
-                <p className='text-black py-1 text-center px-4 font-[400]'>{`Subido en plataformas! dale estrellita en GitHub si te gusta`}</p>
-                <button 
-                  className='text-white bg-green-700 py-2 px-6 rounded-full mb-1'
-                  onClick={()=>welcomeEnd()}  
-                >
-                  {`Finalizar :)`}
-                </button>
-              </div>
+              : welcome.pasoDos ?
+                <div className='absolute flex flex-col items-center z-40 left-16 bottom-16 md:left-24 w-56 rounded-md bg-white'>
+                  <p className='text-black font-[800] pt-2'>2/3</p>
+                  <p className='text-black py-1 text-center px-4 font-[400]'>{`Puedes visitar la Demostracion <3`}</p>
+                  <button
+                    className='text-white bg-green-700 py-2 px-6 rounded-full mb-1'
+                    onClick={() => setWelcome({ pasoDos: false, pasoTres: true })}
+                  >
+                    Siguiente
+                  </button>
+                </div>
+                : welcome.pasoTres &&
+                <div className='absolute flex flex-col items-center z-40 right-14 bottom-4 md:bottom-16 md:right-32 w-56 rounded-md bg-white'>
+                  <p className='text-black font-[800] pt-2'>3/3</p>
+                  <p className='text-black py-1 text-center px-4 font-[400]'>{`Subido en plataformas! dale estrellita en GitHub si te gusta`}</p>
+                  <button
+                    className='text-white bg-green-700 py-2 px-6 rounded-full mb-1'
+                    onClick={() => welcomeEnd()}
+                  >
+                    {`Finalizar :)`}
+                  </button>
+                </div>
             }
 
-            
+
             <div className={`${welcome.pasoUno && 'z-30 shadow-xl shadow-[#ffffff21] '} bg-[#1d1d1d] relative max-h-[155px] bg-transparent overflow-ellipsis tracking-wide font-[200] text-sm apply-none overflow-y-auto rounded`}>
-              <Icon 
-                className={`${welcome.pasoUno ? 'animate-bounce ' : 'hidden'} absolute right-6 z-40 top-16`} 
-                icon="ic:round-swipe-up" 
-                width={60} 
-                color='#ffffffe1'/>
-              
+              <Icon
+                className={`${welcome.pasoUno ? 'animate-bounce ' : 'hidden'} absolute right-6 z-40 top-16`}
+                icon="ic:round-swipe-up"
+                width={60}
+                color='#ffffffe1' />
+
               <Markdown className="overflow-ellipsis bg-[#151b23] px-4 pt-2" rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}>{descripcion}</Markdown>
             </div>
 
@@ -117,37 +140,54 @@ const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMu
           <div className='md:w-[260px] w-full mx-w-4/12 flex flex-col items-start sm:pt-6 pb-6 sm:pb-0 px-8'>
             <p>Caracteristicas</p>
             <ul className='font-[200] text-[#adacac] list-disc max-w-full leading-7'>
-              {caracteristicas.map((caracteristica,index)=><li key={index}>{caracteristica}</li>)}
+              {caracteristicas.map((caracteristica, index) => <li key={index}>{caracteristica}</li>)}
             </ul>
           </div>
         </div>
 
         <div className='flex w-11/12 mx-auto justify-center items-center flex-wrap py-2 pb-4 md:pb-2'>
           <a href={demoLive} target='_blank' className={`${welcome.pasoDos && 'z-30 shadow-xl shadow-[#ffffff21]'} w-4/12 md:mb-0 mb-4`}>
-            <button className='flex justify-center gap-2 bg-[#1e9480] py-2 w-full rounded-md'>
+            <button className='flex justify-center gap-2 bg-[#1f6383] hover:bg-[#1b536d] py-2 w-full rounded-md'>
               <Icon width={25} icon={moonAltToSunnyOutlineLoopTransition} />
               Visitar Proyecto
             </button>
           </a>
-          <div className={`${welcome.pasoTres && 'z-30 shadow-xl'} flex mx-4 flex-wrap justify-center`}>
-            <p className='md:mx-0 md:mr-3 mx-4'>Poyecto subido en:</p>
+
+          <div className={`z-30 w-1/12 md:mb-0 mb-4 mx-2`}>
+            <button
+              className='flex justify-center gap-2 bg-[#1bb367] hover:bg-[#278f5b] py-2 w-full rounded-md'
+              onClick={() => compartirProyecto()}
+            >
+              {mostrarIcono && (
+                <Icon width={25} icon={enlaceCopiado ? 'line-md:confirm-circle' : 'basil:share-outline'} />
+              )
+              }
+              {!mostrarIcono && (
+                <Icon width={25} icon='basil:share-outline' color='#278f5b00' />
+
+              )}
+            </button>
+          </div>
+
+          <div className={`${welcome.pasoTres && 'z-30 shadow-xl'} flex flex-wrap justify-center`}>
+            <p className='md:mx-0 md:mr-3'>Poyecto subido en:</p>
             <div className='flex'>
               {github !== '' &&
-                <ContenedorRedesSocialesPerfil 
+                <ContenedorRedesSocialesPerfil
                   icon='skill-icons:github-dark'
                   name='GitHub'
                   url={github}
                 />
               }
               {linkedin !== '' &&
-                <ContenedorRedesSocialesPerfil 
+                <ContenedorRedesSocialesPerfil
                   icon='devicon:linkedin'
                   name='Linkedin'
                   url={linkedin}
                 />
               }
               {figma !== '' &&
-                <ContenedorRedesSocialesPerfil 
+                <ContenedorRedesSocialesPerfil
                   icon='skill-icons:figma-light'
                   name='figma'
                   url={figma}
@@ -158,9 +198,9 @@ const InfProyecto = ({setMostratVentana,titulo,descripcion,caracteristicas,urlMu
         </div>
       </div>
 
-      
+
     </div>
   );
 }
- 
+
 export default InfProyecto;
