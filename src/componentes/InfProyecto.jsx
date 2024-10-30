@@ -153,7 +153,7 @@ const InfProyecto = ({ idDoc, setMostratVentana, titulo, descripcion, caracteris
             </button>
           </a>
 
-          <div className={`z-30 w-1/12 md:mb-0 mb-4 mx-2`}>
+          <div className={`w-1/12 md:mb-0 mb-4 mx-2 z-10`}>
             <button
               className='flex justify-center gap-2 bg-[#1bb367] hover:bg-[#278f5b] py-2 w-full rounded-md'
               onClick={() => compartirProyecto()}
