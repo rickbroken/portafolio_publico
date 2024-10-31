@@ -12,7 +12,7 @@ import 'ace-builds/src-noconflict/theme-one_dark';
 import 'ace-builds/src-noconflict/mode-markdown';
 import loadingTwotoneLoop from '@iconify/icons-line-md/loading-twotone-loop';
 
-const NuevaPublicacion = () => {
+const NuevaPublicacion = ({setMenuPublicacionMain}) => {
   const {usuario} = useAuth();
   
   const editorRef = useRef(null);
@@ -43,6 +43,7 @@ const NuevaPublicacion = () => {
   
 	const handleSubmit = async () => {
     setPublicando(true);
+    setMenuPublicacionMain(true);
     //validamos si la publicacion tiene texto para pulicar
 		if(textoPublicacion === ''){
       setMostrarAlerta(true);
