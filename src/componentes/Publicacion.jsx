@@ -20,7 +20,7 @@ import Swal from 'sweetalert2';
 import { alert_success } from '../funciones/alerts';
 
 
-const Publicacion = ({ texto, fecha, id, editado, publicaciones, idUsuario, urlMultimedia, tipoMultimedia, formatoMovil, ImagenPerfil, nameMuntimedia }) => {
+const Publicacion = ({ menuPublicacionMain, setMenuPublicacionMain, texto, fecha, id, editado, publicaciones, idUsuario, urlMultimedia, tipoMultimedia, formatoMovil, ImagenPerfil, nameMuntimedia }) => {
   const { usuario } = useAuth();
   const { perfil } = useObtenerPerfil();
   const [menuPublicacion, setMenuPublicacion] = useState(false);
@@ -100,14 +100,14 @@ const Publicacion = ({ texto, fecha, id, editado, publicaciones, idUsuario, urlM
     // Se copia el enlace al portapapeles y se renderiza nuevamente el ícono
     setEnlaceCopiado(true);
     setMostrarIcono(false);
-    
+
     alert_success('Enlace copiado');
 
     // Re-muestra el ícono después de un breve retardo
     setTimeout(() => {
       setMostrarIcono(true);
     }, 50); // Breve intervalo para forzar el re-render
-    
+
     copiarEnlacePublicacion(id);
 
     setTimeout(() => {
@@ -115,10 +115,40 @@ const Publicacion = ({ texto, fecha, id, editado, publicaciones, idUsuario, urlM
     }, 4000);
   }
 
+  const eliminarPublicacionCofirmacion = () => {
+    Swal.fire({
+      title: "¿Seguro que desea eliminar la publicacion?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, Eliminar",
+      cancelButtonText: "No, Cancelar",
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        eliminarPublicacion(id);
+        setMenuPublicacion(false);
+      } else {
+        setMenuPublicacion(!menuPublicacion);
+        setMenuPublicacionMain(false);
+      }
+    });
+  }
+
   return (
     <article id={id} className={`${formatoMovil ? 'sm:w-6/12' : 'sm:w-full'} mx-auto sm:my-8 my-2 mb-20 rounded-xl font-primaria relative bg-[#151b23]`}>
-      <Icon onClick={() => setMenuPublicacion(!menuPublicacion)} className='absolute right-5 top-4 cursor-pointer select-none active:select-none focus:select-none' width='30' color='#b8b8b8' icon="solar:menu-dots-bold" />
-      {menuPublicacion &&
+      <Icon
+        onClick={() => {
+          setMenuPublicacion(!menuPublicacion)
+          setMenuPublicacionMain(false)
+        }}
+        className='absolute right-5 top-4 cursor-pointer select-none active:select-none focus:select-none'
+        width='30'
+        color='#b8b8b8'
+        icon="solar:menu-dots-bold"
+      />
+      {menuPublicacion && !menuPublicacionMain &&
         <div className='bg-[#413f3f] absolute right-6 top-11 rounded-sm z-10'>
           {usuario !== null && !editando &&
             <p className='py-1 px-6 my-1 cursor-pointer font-[200] hover:bg-[#555454] select-none' onClick={() => {
@@ -129,10 +159,7 @@ const Publicacion = ({ texto, fecha, id, editado, publicaciones, idUsuario, urlM
             </p>
           }
           {usuario !== null && <p className='py-1 px-6 my-1 cursor-pointer font-[200] hover:bg-[#555454] select-none'
-            onClick={() => {
-              eliminarPublicacion(id);
-              setMenuPublicacion(false);
-            }}>
+            onClick={() => eliminarPublicacionCofirmacion()}>
             Borrar
           </p>}
           <p className='flex py-1 px-4 my-1 cursor-pointer font-[200] hover:bg-[#555454] select-none text-sm' onClick={() => {
