@@ -10,6 +10,7 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/ext-language_tools";
 import 'ace-builds/src-noconflict/theme-one_dark';
 import 'ace-builds/src-noconflict/mode-markdown';
+import Swal from 'sweetalert2';
 
 
 const FormularioAgregarProyecto = ({setFormularioAgregarProyecto}) => {
@@ -81,11 +82,29 @@ const FormularioAgregarProyecto = ({setFormularioAgregarProyecto}) => {
   const onChange = (newValue) => {
     setDescripcion(newValue);
   }
+
+  const cerrarModalCrearProyecto = () => {
+    Swal.fire({
+      title: "Do you want to save the changes?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire("Saved!", "", "success");
+        setFormularioAgregarProyecto(false);
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
+  }
   
   return (
     <div className='flex justify-center fixed left-0 top-0 w-full h-screen backdrop-blur-sm bg-[#00000031] z-10'>
       <div className='bg-[rgb(37,37,37)] max-w-3xl w-full rounded-2xl relative z-20 flex flex-col items-center overflow-scroll overflow-y-auto overflow-x-auto my-10 max-h-[820px]'>
-        <div className='absolute right-3 top-2' onClick={()=>setFormularioAgregarProyecto(false)}>
+        <div className='absolute right-3 top-2' onClick={()=>cerrarModalCrearProyecto()}>
           <Icon className='cursor-pointer' width='30' color='#b8b8b8' icon="ic:round-close" />
         </div>
 
