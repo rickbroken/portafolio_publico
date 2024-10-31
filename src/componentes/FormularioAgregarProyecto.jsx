@@ -85,18 +85,17 @@ const FormularioAgregarProyecto = ({setFormularioAgregarProyecto}) => {
 
   const cerrarModalCrearProyecto = () => {
     Swal.fire({
-      title: "Do you want to save the changes?",
-      showDenyButton: true,
+      title: "Si sale de la ventana, los cambios no se guardaran",
+      icon: "question",
       showCancelButton: true,
-      confirmButtonText: "Save",
-      denyButtonText: `Don't save`
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, salir",
+      cancelButtonText: "No, quedarme",
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        Swal.fire("Saved!", "", "success");
         setFormularioAgregarProyecto(false);
-      } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
       }
     });
   }
