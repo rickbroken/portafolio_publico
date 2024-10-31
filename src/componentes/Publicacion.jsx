@@ -17,7 +17,7 @@ import "ace-builds/src-noconflict/ext-language_tools";
 import 'ace-builds/src-noconflict/theme-one_dark';
 import 'ace-builds/src-noconflict/mode-markdown';
 import Swal from 'sweetalert2';
-import { alert_success } from '../funciones/alerts';
+import { alert_error, alert_success } from '../funciones/alerts';
 
 
 const Publicacion = ({ menuPublicacionMain, setMenuPublicacionMain, texto, fecha, id, editado, publicaciones, idUsuario, urlMultimedia, tipoMultimedia, formatoMovil, ImagenPerfil, nameMuntimedia }) => {
@@ -67,7 +67,7 @@ const Publicacion = ({ menuPublicacionMain, setMenuPublicacionMain, texto, fecha
 
   const handleActualizar = async () => {
     if (texto === nuevoTexto && fileImagen === undefined) {
-      alert('No ah ingresado cambios');
+      alert_error('No se ha realizado ningun cambio');
       return;
     }
     setPublicando(true);
