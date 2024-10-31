@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import NuevaPublicacion from './NuevaPublicacion';
 import Publicacion from './Publicacion';
@@ -19,6 +19,7 @@ const Home = () => {
   const {usuario} = useAuth();
   const {perfil} = useObtenerPerfil();
   const location = useLocation();
+  const [menuPublicacionMain, setMenuPublicacionMain] = useState(false);
   
   const formatearFechaUnix = (fecha) => {
     return format(fromUnixTime(fecha), "dd MMM 'de' yyyy - hh:mm aa", {locale: es})
@@ -31,7 +32,7 @@ const Home = () => {
     <Helmet>
       <title>RickBroken</title>
     </Helmet> 
-    {usuario !== null && <NuevaPublicacion />}
+    {usuario !== null && <NuevaPublicacion setMenuPublicacionMain={setMenuPublicacionMain} />}
     {publicaciones.length === 0 && existenPublicaciones === undefined &&
       <CargandoPublicacion />
     }
@@ -44,6 +45,8 @@ const Home = () => {
       publicaciones.map((data, i)=>(
         location.hash === '' ?
         <Publicacion
+          menuPublicacionMain={menuPublicacionMain}
+          setMenuPublicacionMain={setMenuPublicacionMain}
           publicaciones={publicaciones}
           nameMuntimedia={data.nameMuntimedia}
           key={i++}
