@@ -20,8 +20,9 @@ const Login = () => {
 
   const expresionRegular = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/;
 
+  
+
   const handleSubmit = async() => {
-    console.log(correo)
     if(!expresionRegular.test(correo)){
       alert('Ingresa un Correo valido');
       return;
@@ -48,6 +49,23 @@ const Login = () => {
       }
     }
   }
+
+  useEffect(() => {
+    // Función que manejará el evento keydown
+    const manejar_tecla = (evento) => {
+      if (evento.key === 'Enter') {
+        handleSubmit();
+      }
+    };
+
+    // Agregar el listener para keydown cuando el componente se monta
+    document.addEventListener('keydown', manejar_tecla);
+
+    // Limpiar el listener cuando el componente se desmonte
+    return () => {
+      document.removeEventListener('keydown', manejar_tecla);
+    };
+  }, [correo, password]);
 
 
   return (
