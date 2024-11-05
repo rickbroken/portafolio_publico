@@ -11,6 +11,7 @@ import "ace-builds/src-noconflict/ext-language_tools";
 import 'ace-builds/src-noconflict/theme-one_dark';
 import 'ace-builds/src-noconflict/mode-markdown';
 import Swal from 'sweetalert2';
+import { alert_error } from '../funciones/alerts';
 
 
 const FormularioAgregarProyecto = ({setFormularioAgregarProyecto}) => {
@@ -70,7 +71,8 @@ const FormularioAgregarProyecto = ({setFormularioAgregarProyecto}) => {
       await uploadBytes(refImagen,fileImagen);
       urlMultimedia = await getDownloadURL(refImagen);
     } else {
-      alert('Debe cargar imagenes en su proyecto >:(');
+      alert_error('Debe cargar imagenes en su proyecto >:(');
+      setPublicando(false);
       return;
     }
 
