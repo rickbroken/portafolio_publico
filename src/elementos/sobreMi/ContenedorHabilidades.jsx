@@ -9,7 +9,7 @@ const ContenedorHabilidades = ({text, icon, id, habilidad, setHabilidad, setCamb
   return (
     <div className='flex justify-between items-center'>
       <div className='flex items-center'>
-        <Icon className='mx-2 my-1' width='38' color='white' icon={icon} />
+        <Icon className='mx-2 my-1 aspect-video' width='38' color='white' icon={icon} />
         <p className='font-[200]'>{text}</p>
       </div>
       {usuario !== null &&

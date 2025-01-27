@@ -80,7 +80,7 @@ const Proyecto = ({titulo,descripcion,caracteristicas,figma,linkedin,github,demo
         </div>
       }
       <div className='cursor-pointer' onClick={()=>setMostratVentana(true)}>
-        <img className='w-full max-h-[190px] select-none object-cover' src={urlMultimediaPrev} />
+        <img className='w-full max-h-[190px] select-none object-cover aspect-video' src={urlMultimediaPrev} />
       </div>
       <p className='my-1 text-center w-full'>{titulo}</p>
         <span className='eliminar-estilos-markdown font-[100] px-3 leading-5 max-h-16 text-ellipsis overflow-hidden'>

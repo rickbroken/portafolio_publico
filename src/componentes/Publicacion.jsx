@@ -259,7 +259,7 @@ const Publicacion = ({ menuPublicacionMain, setMenuPublicacionMain, texto, fecha
 
         {tipoMultimedia === 'image/png' || tipoMultimedia === 'image/jpeg' ?
           <a href={urlMultimedia} className='w-full' target='_blanck'>
-            <img className='object-cover w-full cursor-pointer' alt={nameMuntimedia} src={urlMultimedia} />
+            <img className='object-cover w-full cursor-pointer aspect-video' alt={nameMuntimedia} src={urlMultimedia} />
           </a>
           : tipoMultimedia === 'video/mp4' &&
           <video controls className='w-full'>
