@@ -132,7 +132,7 @@ const InfProyecto = ({ idDoc, setMostratVentana, titulo, descripcion, caracteris
 
             <div className='flex max-w-full min-w-full max-h-[300px] min-h-[250px] my-4 justify-center items-center rounded-md overflow-hidden'>
               <a href={linkedin !== '' && linkedin} target="_blank">
-                <img className='w-full object-cover' src={urlMultimedia} />
+                <img className='w-full object-cover aspect-video' src={urlMultimedia} />
               </a>
             </div>
           </div>
