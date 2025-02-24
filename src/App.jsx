@@ -8,7 +8,7 @@ import Proyectos from './componentes/Proyectos'
 import SobreMi from './componentes/SobreMi'
 import MenuNavegacion from './componentes/MenuNavegacion'
 import Footer from './componentes/Footer';
-import Login from './componentes/login';
+import Login from './componentes/Login';
 
 
 WebFont.load({
