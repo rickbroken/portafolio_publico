@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import NuevaPublicacion from './NuevaPublicacion';
 import Publicacion from './Publicacion';
 import useObtenerPublicaciones from './../hooks/useObtenerPublicaciones';
 import { format, fromUnixTime } from 'date-fns';
 import { es } from 'date-fns/locale';
-import CargandoPublicacion from '../elementos/cargandoPublicacion';
+import CargandoPublicacion from '../elementos/CargandoPublicacion';
 import SinPublicaciones from './../elementos/SinPublicaciones';
 import { useAuth } from '../contextos/useAuth';
 import useObtenerPerfil from '../hooks/useObtenerPerfil';
