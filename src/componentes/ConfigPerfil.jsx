@@ -79,7 +79,7 @@ const ConfigPerfil = ({ setConfig, perfil }) => {
               </div>
 
               <div className='w-[92%]'>
-                <p>Youtube:</p>
+                <p>Instagram:</p>
                 <input className='py-2 px-3 rounded-sm outline-none mb-5 w-full' type="text" value={instagram} onChange={(e) => setInstagram(e.target.value)} />
               </div>
               <div className='w-[92%]'>
