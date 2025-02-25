@@ -1,16 +1,13 @@
 import {useEffect, useState} from 'react';
 import { db } from '../firebase/firebaseConfig';
-import { collection, onSnapshot, query, where } from 'firebase/firestore';
-import { useAuth } from '../contextos/useAuth';
+import { collection, onSnapshot, query } from 'firebase/firestore';
 
 const useObtenerPerfil = () => {
     const [perfil, setPerfil] = useState([]);
-    const {usuario} = useAuth();
 
     useEffect(()=>{
       const consulta = query(
           collection(db, 'Perfiles')
-          //where('idUsuario', '==', usuario.uid)
       );
     
       const unsuscribe = onSnapshot(consulta, (snapshot) => {

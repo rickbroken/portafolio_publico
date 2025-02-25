@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import ContenedorBannerHeader from '../elementos/header/ContenedorBannerHeader'
 import bannerPerfil from '../imagenes/bannerPerfil.png'
 import ContenedorImgPerfil from '../elementos/header/ContenedorImgPerfil'
@@ -61,7 +61,7 @@ const Header = () => {
               <div className='h-6 w-3/12 bg-slate-600 rounded-md animate-pulse my-1'></div>
             </>
           }
-          <div className='flex my-4 flex-wrap'>
+          <div className='flex my-4 flex-wrap justify-between'>
             {perfil.length !== 0 ?
               <>
                 {perfil[0]?.github !== '' &&
@@ -78,19 +78,26 @@ const Header = () => {
                     url={perfil[0].linkedin}
                   />
                 }
-                {perfil[0]?.instagram !== '' &&
+                {perfil[0]?.youtube !== '' &&
                   <ContenedorRedesSocialesPerfil
                     icon='logos:youtube-icon'
-                    name='Canal de YouTube'
-                    url={perfil[0].instagram}
+                    name='YouTube'
+                    url={perfil[0].youtube}
+                  />
+                }
+                {perfil[0]?.tiktok !== '' &&
+                  <ContenedorRedesSocialesPerfil
+                    icon='logos:tiktok-icon'
+                    name='TikTok'
+                    url={perfil[0].tiktok}
                   />
                 }
 
                 {perfil[0]?.instagram !== '' &&
                   <ContenedorRedesSocialesPerfil
-                    icon='logos:tiktok-icon'
-                    name='TikTok'
-                    url={perfil[0].figma}
+                    icon='skill-icons:instagram'
+                    name='Instagram'
+                    url={perfil[0].instagram}
                   />
                 }
 

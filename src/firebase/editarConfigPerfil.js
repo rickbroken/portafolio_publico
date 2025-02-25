@@ -1,12 +1,13 @@
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "./firebaseConfig";
 
-const actualizarConfigPerfil = async(id, nombres, apellidos, figma, github, habilidades, instagram, linkedin, residencia, quienSoy) => {
+const actualizarConfigPerfil = async(id, nombres, apellidos, tiktok, youtube, github, habilidades, instagram, linkedin, residencia, quienSoy) => {
   try {
     await updateDoc(doc(db, 'Perfiles', id), {
       nombres: nombres,
       apellidos: apellidos,
-      figma: figma,
+      tiktok: tiktok,
+      youtube: youtube,
       github: github,
       habilidades: habilidades,
       instagram: instagram,
