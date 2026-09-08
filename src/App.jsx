@@ -9,6 +9,7 @@ import SobreMi from './componentes/SobreMi'
 import MenuNavegacion from './componentes/MenuNavegacion'
 import Footer from './componentes/Footer';
 import Login from './componentes/Login';
+import PoliticaPrivacidadSlither from './componentes/PoliticaPrivacidadSlither';
 
 
 WebFont.load({
@@ -41,6 +42,9 @@ const App = () => {
           }/>
           <Route path='/sobremi'  element={
             <SobreMi />
+          }/>
+          <Route path='/slither-friend-tracker/privacy' element={
+            <PoliticaPrivacidadSlither />
           }/>
           <Route path='*'  element={
             <Home />
